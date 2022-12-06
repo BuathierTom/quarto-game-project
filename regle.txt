@@ -1,7 +1,7 @@
     PRESENTATION ET PREPARATION
 
 - Un plateau de 16 cases
--16 pieces differentes ayant chacune 4 caracteres:
+- 16 pieces differentes ayant chacune 4 caracteres:
 claire ou foncee, ronde ou carree, haute ou basse, pleine ou creuse.
 En debut de partie, les pieces sont deposees a cote du plateau.
 

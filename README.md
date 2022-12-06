@@ -2,6 +2,7 @@
 
 
 # Fait:
+
 > 03/10/2022
 - ajout des classes Plateau, Piece, Menu et main.
 - ajout de commande de gestion
@@ -24,3 +25,4 @@
 - ajout d'un mode competition (avec timer)
 - ajout de musique d'ambiance et d'un menu option
 - ajout d'effet graphique (placement des pieces, QUARTO ! ...)
+
