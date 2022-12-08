@@ -24,7 +24,7 @@ import javafx.event.EventHandler;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage mainWindow) {
         /* Création des layouts pour les boutons */
         StackPane s1 = new StackPane();
         VBox v1 = new VBox();
@@ -48,17 +48,16 @@ public class App extends Application {
 
 				Scene secondScene = new Scene(secondaryLayout, 230, 100);
 
-				// New window (Stage)
-				Stage newWindow = new Stage();
-				newWindow.setTitle("Second Stage");
-				newWindow.setScene(secondScene);
+				/* Definition d'une nouvelle fenêtre */
+				Stage rulesWindow = new Stage();
+				rulesWindow.setTitle("REGLES");
+				rulesWindow.setScene(secondScene);
 
-                newWindow.initModality(Modality.WINDOW_MODAL);
+                /* Permettre que la fenêtre doit se fermer pour pouvoir acceder a l'ancienne fenetre */
+                rulesWindow.initModality(Modality.WINDOW_MODAL);
+                rulesWindow.initOwner(mainWindow);
 
-                // Specifies the owner Window (parent) for new window
-                newWindow.initOwner(stage);
-
-                newWindow.show();
+                rulesWindow.show();
             }});    
         
         
@@ -75,10 +74,10 @@ public class App extends Application {
         /* Insertion du layout StackPane dans le Vbox :) */
         s1.getChildren().addAll(v1);
         /* Lancement de la scène */
-        stage.setTitle("QUARTO");
+        mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(s1, 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        mainWindow.setScene(scene);
+        mainWindow.show();
     }
 
     
