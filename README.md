@@ -15,6 +15,9 @@
 > 06/10/2022
 - ajout de l'option de verification du QUARTO en carre
 
+> 08/12/2022
+- ajout d'une interface avec javafx
+
 # A faire:
 
 - ajout d'une interface graphique

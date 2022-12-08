@@ -1,12 +1,15 @@
 package com.example;
 
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 
 /**
@@ -16,36 +19,36 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-
+        /* Création des layouts pour les boutons */
+        StackPane s1 = new StackPane();
         VBox v1 = new VBox();
-        HBox h1 = new HBox();
-        
-        GridPane pane = new GridPane();
-
-                
+        /* Création des boutons */
         Button play = new Button("PLAY");
         Button regles = new Button("REGLES");
         Button exit = new Button("EXIT");
+        /* Insertion des boutons */
+        v1.getChildren().add(play);    
+        v1.getChildren().add(regles);    
+        v1.getChildren().add(exit);  
+        /* Bouton de sorti de l'application */
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                Stage stage = (Stage) exit.getScene().getWindow();
+                stage.close();
+            }});
 
-
-
-        h1.getChildren().add(play);    
-        h1.getChildren().add(regles);    
-        h1.getChildren().add(exit);  
-
-
-        v1.getChildren().addAll(h1);
-
-
-        
+        /* Insertion du layout StackPane dans le Vbox :) */
+        s1.getChildren().addAll(v1);
+        /* Lancement de la scène */
         stage.setTitle("QUARTO");
-        Scene scene = new Scene(v1, 640, 480);
+        Scene scene = new Scene(s1, 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
     
-
+    /* LANCE LE PROGRAMME */
     public static void main(String[] args) {
         launch();
     }
