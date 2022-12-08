@@ -1,20 +1,22 @@
 package com.example;
 
-
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.css.Rule;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 
 /**
  * JavaFX App
@@ -34,17 +36,30 @@ public class App extends Application {
         v1.getChildren().add(play);    
 
         v1.getChildren().add(regles);
-
         /* Chargement des regles dans une autre fenetre */
-        // regles.setOnAction(new EventHandler<ActionEvent>() {
-        //     @Override
-        //     public void handle(ActionEvent e) {
-        //         InputStream regle = new FileInputStream("regle.txt");
-        //         Scanner obj = new Scanner(regle);
-        //         while (obj.hasNextLine()) {
-        //         System.out.println("\n"+obj.nextLine()+"\n");
-        //         }
-        //     }});    
+        regles.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+
+                Label secondLabel = new Label("YEAH ZBI");
+                
+                StackPane secondaryLayout = new StackPane();
+				secondaryLayout.getChildren().add(secondLabel);
+
+				Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+				// New window (Stage)
+				Stage newWindow = new Stage();
+				newWindow.setTitle("Second Stage");
+				newWindow.setScene(secondScene);
+
+                newWindow.initModality(Modality.WINDOW_MODAL);
+
+                // Specifies the owner Window (parent) for new window
+                newWindow.initOwner(stage);
+
+                newWindow.show();
+            }});    
         
         
 
