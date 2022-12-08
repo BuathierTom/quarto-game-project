@@ -1,6 +1,10 @@
 package com.example;
 
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,15 +32,30 @@ public class App extends Application {
         Button exit = new Button("EXIT");
         /* Insertion des boutons */
         v1.getChildren().add(play);    
-        v1.getChildren().add(regles);    
-        v1.getChildren().add(exit);  
+
+        v1.getChildren().add(regles);
+
+        /* Chargement des regles dans une autre fenetre */
+        // regles.setOnAction(new EventHandler<ActionEvent>() {
+        //     @Override
+        //     public void handle(ActionEvent e) {
+        //         InputStream regle = new FileInputStream("regle.txt");
+        //         Scanner obj = new Scanner(regle);
+        //         while (obj.hasNextLine()) {
+        //         System.out.println("\n"+obj.nextLine()+"\n");
+        //         }
+        //     }});    
+        
+        
+
         /* Bouton de sorti de l'application */
+        v1.getChildren().add(exit);  
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 Stage stage = (Stage) exit.getScene().getWindow();
                 stage.close();
-            }});
+        }});
 
         /* Insertion du layout StackPane dans le Vbox :) */
         s1.getChildren().addAll(v1);
