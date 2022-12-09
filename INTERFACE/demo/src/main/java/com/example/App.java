@@ -1,11 +1,14 @@
 package com.example;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.skin.LabeledSkinBase;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,19 +38,20 @@ public class App extends Application {
         regles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                String rules = " ";
+                ArrayList<String> rules = new ArrayList<>();
                 try {
                     rules = Rules.placeRules();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
+                Label secondLabel = new Label();
+                for (String string : rules) {
+                    secondLabel = new Label(string);
+                }
 
-                Label secondLabel = new Label(rules);
-                
-                StackPane secondaryLayout = new StackPane();
-				secondaryLayout.getChildren().add(secondLabel);
-
-				Scene secondScene = new Scene(secondaryLayout, 680, 480);
+                StackPane secondaryLayout = new StackPane();    
+                secondaryLayout.getChildren().add(secondLabel);
+                Scene secondScene = new Scene(secondaryLayout, 400, 400);
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();

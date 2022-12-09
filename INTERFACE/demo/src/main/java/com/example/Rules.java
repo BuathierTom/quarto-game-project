@@ -3,17 +3,20 @@ package com.example;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Rules{
 
 
-    public static String placeRules() throws FileNotFoundException{
+    public static ArrayList placeRules() throws FileNotFoundException{
         InputStream regle = new FileInputStream("../../regle.txt");
         Scanner obj = new Scanner(regle);
-        var res = "";
+        ArrayList<String> res = new ArrayList<>() ;
         while (obj.hasNextLine()) {
-            return ("\n"+obj.nextLine()+"\n");
+            res.add("\n"+obj.nextLine()+"\n");
+            
         }
         return res;
     }
