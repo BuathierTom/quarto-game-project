@@ -12,7 +12,7 @@ public class Rules{
         Scanner obj = new Scanner(regle);
         ArrayList<String> res = new ArrayList<>() ;
         while (obj.hasNextLine()) {
-            res.add("\n"+obj.nextLine()+"\n");
+            res.add(obj.nextLine());
         }
         return res;
     }

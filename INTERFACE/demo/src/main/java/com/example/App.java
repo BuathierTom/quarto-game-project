@@ -45,15 +45,15 @@ public class App extends Application {
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
-                HBox secondaryLayout = new HBox();
-
+                
+                VBox secondaryLayout = new VBox();
                 Label secondLabel = new Label();
+
                 for (String string : rules) {
+                    System.out.println(string);
                     secondLabel = new Label(string);
                     secondaryLayout.getChildren().add(secondLabel);
                 }
-
-                
                 Scene secondScene = new Scene(secondaryLayout, 400, 400);
 
 				/* Definition d'une nouvelle fenêtre */
