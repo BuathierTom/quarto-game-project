@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.skin.LabeledSkinBase;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -44,13 +45,15 @@ public class App extends Application {
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
+                HBox secondaryLayout = new HBox();
+
                 Label secondLabel = new Label();
                 for (String string : rules) {
                     secondLabel = new Label(string);
+                    secondaryLayout.getChildren().add(secondLabel);
                 }
 
-                StackPane secondaryLayout = new StackPane();    
-                secondaryLayout.getChildren().add(secondLabel);
+                
                 Scene secondScene = new Scene(secondaryLayout, 400, 400);
 
 				/* Definition d'une nouvelle fenêtre */
