@@ -1,13 +1,8 @@
 package com.example;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.css.Rule;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,13 +35,19 @@ public class App extends Application {
         regles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                String rules = " ";
+                try {
+                    rules = Rules.placeRules();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
 
-                Label secondLabel = new Label("YEAH ZBI");
+                Label secondLabel = new Label(rules);
                 
                 StackPane secondaryLayout = new StackPane();
 				secondaryLayout.getChildren().add(secondLabel);
 
-				Scene secondScene = new Scene(secondaryLayout, 230, 100);
+				Scene secondScene = new Scene(secondaryLayout, 680, 480);
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();

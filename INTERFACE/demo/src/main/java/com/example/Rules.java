@@ -8,11 +8,13 @@ import java.util.Scanner;
 public class Rules{
 
 
-    public Rules() throws FileNotFoundException{
-        InputStream regle = new FileInputStream("regle.txt");
+    public static String placeRules() throws FileNotFoundException{
+        InputStream regle = new FileInputStream("../../regle.txt");
         Scanner obj = new Scanner(regle);
+        var res = "";
         while (obj.hasNextLine()) {
-            System.out.println("\n"+obj.nextLine()+"\n");
+            return ("\n"+obj.nextLine()+"\n");
         }
+        return res;
     }
 }
