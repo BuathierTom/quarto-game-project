@@ -1,14 +1,9 @@
 package com.example;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
@@ -36,38 +31,11 @@ public class App extends Application {
         regles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                ArrayList<String> rules = new ArrayList<>();
-                try {
-                    rules = Rules.placeRules();
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                }
-                
-                VBox secondaryLayout = new VBox();
-                Label secondLabel = new Label();
-
-                for (String string : rules) {
-                    System.out.println(string);
-                    secondLabel = new Label(string);
-                    secondaryLayout.getChildren().add(secondLabel);
-                }
-                Scene secondScene = new Scene(secondaryLayout, 920, 710);
-
-				/* Definition d'une nouvelle fenêtre */
-				Stage rulesWindow = new Stage();
-				rulesWindow.setTitle("REGLES");
-				rulesWindow.setScene(secondScene);
-
-                /* Permettre que la fenêtre doit se fermer pour pouvoir acceder a l'ancienne fenetre */
-                rulesWindow.initModality(Modality.WINDOW_MODAL);
-                rulesWindow.initOwner(mainWindow);
-
-                rulesWindow.show();
+                Stage windowRules = Rules.windowRules(mainWindow);
+                windowRules.show();
             }});    
         
-        
-
-        /* Bouton de sorti de l'application */
+        /* Bouton de exit de l'application */
         v1.getChildren().add(exit);  
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -85,10 +53,8 @@ public class App extends Application {
         mainWindow.show();
     }
 
-    
     /* LANCE LE PROGRAMME */
     public static void main(String[] args) {
         launch();
     }
-
 }
