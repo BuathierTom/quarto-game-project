@@ -51,7 +51,7 @@ public class App extends Application {
                     secondLabel = new Label(string);
                     secondaryLayout.getChildren().add(secondLabel);
                 }
-                Scene secondScene = new Scene(secondaryLayout, 400, 400);
+                Scene secondScene = new Scene(secondaryLayout, 920, 710);
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();

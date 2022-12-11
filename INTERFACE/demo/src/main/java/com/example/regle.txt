@@ -1,9 +1,9 @@
-        PRESENTATION ET PREPARATION
+    PRESENTATION ET PREPARATION
 
     - Un plateau de 16 cases
     - 16 pieces differentes ayant chacune 4 caracteres:
-        • Claire ou foncee, ronde ou carree, haute ou basse, pleine ou creuse.
-        • En debut de partie, les pieces sont deposees a cote du plateau.
+        - Claire ou foncee, ronde ou carree, haute ou basse, pleine ou creuse.
+        - En debut de partie, les pieces sont deposees a cote du plateau.
 
         BUT DU JEU
 
@@ -19,7 +19,7 @@
 
         GAIN DE LA PARTIE
 
-    Un joueur realise un QUARTO et gagne la partie lorsque, en plaçant la piece donnee:
+    Un joueur realise un QUARTO et gagne la partie lorsque, en placant la piece donnee:
     -> Il cree une ligne, une colonne ou un block de 4 claires ou 4 foncees ou 4 rondes ou 4 carrees ou 4 hautes ou 4 basses ou 4 pleines ou 4 creuses.
     Plusieurs caracteres peuvent se cumuler.
     Il n'est pas oblige d avoir lui meme depose les trois autres pieces.
@@ -37,5 +37,5 @@
         OPTION DE JEU
 
     - Il est possible d'activer l'option QUARTO en carre (block de 4) a l'aide de la touche 'c'.
-  Cette offre donc 9 possibilite supplementaire de faire un QUARTO (joueur avertie)
+    Cette offre donc 9 possibilite supplementaire de faire un QUARTO (joueur avertie)
     - Il est possible d'activer le mode competition qui laisserai un timer de 1 minute au joueur pour placer et choisir sa piece ce qui augmente grandement la difficulte du jeu
