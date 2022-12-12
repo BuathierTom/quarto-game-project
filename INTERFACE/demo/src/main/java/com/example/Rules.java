@@ -45,12 +45,11 @@ public class Rules{
 
                 /* For each qui va rechercher tous les éléments dans la list créé */
                 for (String string : rules) {
-                    System.out.println(string);
                     secondLabel = new Label(string);
                     secondaryLayout.getChildren().add(secondLabel);
                 }
                 /* Affichage des regles */
-                Scene secondScene = new Scene(secondaryLayout, 920, 710);
+                Scene secondScene = new Scene(secondaryLayout, 920, 740);
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();
