@@ -4,14 +4,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 
 /**
  * JavaFX App
@@ -55,6 +52,7 @@ public class App extends Application {
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(v1, 640, 480);
+        // scene.getStylesheets().add("stylesheet.css"); //Associer la feuille de style au contenu de la fenêtre
         mainWindow.setScene(scene);
         mainWindow.show();
     }
