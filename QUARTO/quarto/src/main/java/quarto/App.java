@@ -1,5 +1,7 @@
 package quarto;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,9 +29,17 @@ public class App extends Application {
         play.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Stage playWindows = Quarto.quartoWindow(mainWindow);
+                
+                try {
+                    Stage playWindows;
+                    playWindows = Quarto.quartoWindow(mainWindow);
+                    playWindows.show();
 
-                playWindows.show();
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
                 
                 Stage stage = (Stage) play.getScene().getWindow();
                 stage.close();
