@@ -1,4 +1,4 @@
-package quarto;
+package quarto.com;
 
 import java.io.IOException;
 
@@ -30,14 +30,11 @@ public class App extends Application {
             @Override
             public void handle(ActionEvent e) {
                 
-                try {
-                    Stage playWindows;
-                    playWindows = Quarto.quartoWindow(mainWindow);
-                    playWindows.show();
+                
+                Stage playWindows;
+                playWindows = Quarto.quartoWindow(mainWindow);
+                playWindows.show();
                     
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
 
                 
                 Stage stage = (Stage) play.getScene().getWindow();
