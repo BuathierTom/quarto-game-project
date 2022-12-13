@@ -6,7 +6,6 @@ import java.util.Scanner;
  */
 public class Piece {
 
-    //
     // 4 particularité et 2 possibilité par particularité
     // 
     // couleur: blanche ou noire / 0 ou 1
