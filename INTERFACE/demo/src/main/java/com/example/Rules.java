@@ -26,7 +26,7 @@ public class Rules{
         }
         return res;
     }
-
+    
     /*
      * Créé une fenetre avec les regles affichées dedans grace a la fonction créé juste avant
      */
