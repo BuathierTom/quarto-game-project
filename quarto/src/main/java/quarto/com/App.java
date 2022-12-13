@@ -1,7 +1,5 @@
 package quarto.com;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,13 +27,9 @@ public class App extends Application {
         play.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                
-                
                 Stage playWindows;
                 playWindows = Quarto.quartoWindow(mainWindow);
                 playWindows.show();
-                    
-
                 
                 Stage stage = (Stage) play.getScene().getWindow();
                 stage.close();
@@ -61,7 +55,6 @@ public class App extends Application {
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(mainLayout, 150, 150);
-        // scene.getStylesheets().add("stylesheet.css"); //Associer la feuille de style au contenu de la fenêtre
         mainWindow.setScene(scene);
         mainWindow.show();
     }
