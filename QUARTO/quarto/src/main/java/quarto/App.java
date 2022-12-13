@@ -34,8 +34,7 @@ public class App extends Application {
                     Stage playWindows;
                     playWindows = Quarto.quartoWindow(mainWindow);
                     playWindows.show();
-
-
+                    
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

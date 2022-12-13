@@ -30,7 +30,7 @@ public class Quarto {
 
 
 
-        System.out.println(loadFXML("primary"));
+        
         Scene secondScene = new Scene(loadFXML("yes"), 640, 480);
         Stage playWindows = new Stage();
         playWindows.setTitle("QUARTO");
