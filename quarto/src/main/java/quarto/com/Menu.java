@@ -34,6 +34,7 @@ public class Menu extends Application {
                 Stage stage = (Stage) play.getScene().getWindow();
                 stage.close();
         }});
+
         /* Chargement des regles dans une autre fenetre */
         regles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -41,6 +42,7 @@ public class Menu extends Application {
                 Stage windowRules = Rules.windowRules(mainWindow);
                 windowRules.show();
             }});    
+
         /* Bouton de exit de l'application */
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -48,10 +50,12 @@ public class Menu extends Application {
                 Stage stage = (Stage) exit.getScene().getWindow();
                 stage.close();
         }});
+
         /* Insertion du layout StackPane dans le Vbox :) */
         mainLayout.setSpacing(10);
         mainLayout.getChildren().addAll(play, regles, exit);
         mainLayout.setAlignment(Pos.CENTER);
+        
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(mainLayout, 150, 150);
