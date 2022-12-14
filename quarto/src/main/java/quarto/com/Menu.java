@@ -12,7 +12,7 @@ import javafx.geometry.Pos;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class Menu extends Application {
 
     @Override
     public void start(Stage mainWindow) {
