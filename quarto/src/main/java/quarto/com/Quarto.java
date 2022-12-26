@@ -21,32 +21,43 @@ import javafx.stage.Stage;
 public class Quarto {
     
 
+
     public static Stage quartoWindow(Stage mainWindow){
         
         GridPane layout = new GridPane();
 
+        double size = 100;
+
         /* Placement automatique mais non fonctionnel a reprendre plus tard */
         Button box = new Button(" ");
-	    for(int j = 0; j < 4 ; j++){
-            box = new Button("A");  
+	    for(int i = 0; i < 4 ; i++){
+            box = new Button(" ");  
+            box.setPrefWidth(size);
+            box.setPrefHeight(size);
             layout.addRow(0 , box);
             
             GridPane.setMargin(box, new Insets(10, 10, 10, 10));
         }
-        for(int j = 0; j < 4 ; j++){
-            box = new Button("B");  
+        for(int i = 0; i < 4 ; i++){
+            box = new Button(" ");  
+            box.setPrefWidth(size);
+            box.setPrefHeight(size);    
             layout.addRow(1 , box);
             
             GridPane.setMargin(box, new Insets(10, 10, 10, 10));
         }
-        for(int j = 0; j < 4 ; j++){
-            box = new Button("C");  
+        for(int i = 0; i < 4 ; i++){
+            box = new Button(" ");  
+            box.setPrefWidth(size);
+            box.setPrefHeight(size);
             layout.addRow(2 , box);
 
             GridPane.setMargin(box, new Insets(10, 10, 10, 10));
         }
-        for(int j = 0; j < 4 ; j++){
-            box = new Button("D");  
+        for(int i = 0; i < 4 ; i++){
+            box = new Button(" ");  
+            box.setPrefWidth(size);
+            box.setPrefHeight(size);
             layout.addRow(3 , box);
 
             GridPane.setMargin(box, new Insets(10, 10, 10, 10));
