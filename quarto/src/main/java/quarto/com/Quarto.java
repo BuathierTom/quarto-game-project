@@ -66,7 +66,7 @@ public class Quarto {
         layout.setAlignment(Pos.CENTER);
         GridPane.setHgrow(box, Priority.ALWAYS);
 
-        // 'https://www.delftstack.com/fr/howto/java/javafx-square-button/'
+        
         
         
         Scene secondScene = new Scene(layout, 640, 480);

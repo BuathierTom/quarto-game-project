@@ -3,6 +3,8 @@ package quarto.com;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
@@ -56,6 +58,10 @@ public class Menu extends Application {
         mainLayout.getChildren().addAll(play, regles, exit);
         mainLayout.setAlignment(Pos.CENTER);
         
+        /* Icone du jeu : */        
+
+        // a faire plus tard 
+
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(mainLayout, 150, 150);

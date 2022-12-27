@@ -21,6 +21,7 @@
 # A faire:
 
 - ajout d'une interface graphique
+    - Rajouter un logo
 - ajout d'une IA (avec au mieux plusieurs level)
 
 # En plus:
