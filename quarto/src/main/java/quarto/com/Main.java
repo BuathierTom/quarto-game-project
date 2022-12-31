@@ -3,6 +3,8 @@ package quarto.com;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
@@ -57,9 +59,7 @@ public class Main extends Application {
         mainLayout.setAlignment(Pos.CENTER);
         
         /* Icone du jeu : */        
-
-        // a faire plus tard 
-
+        mainWindow.getIcons().add(new Image("https://media.istockphoto.com/id/1171091296/vector/yellow-lines-geometric-vector-logo-letter-q.jpg?s=612x612&w=0&k=20&c=dHYiRhou9QfBogpOeHVgermyBixNl7dXYs6_ozrl69I="));
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(mainLayout, 150, 150);

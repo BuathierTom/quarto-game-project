@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -54,6 +55,7 @@ public class Rules{
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();
+                rulesWindow.getIcons().add(new Image("https://cdn-icons-png.flaticon.com/512/760/760205.png"));
 				rulesWindow.setTitle("REGLES");
 				rulesWindow.setScene(secondScene);
 
