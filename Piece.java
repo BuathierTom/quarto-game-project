@@ -39,7 +39,7 @@ public class Piece {
         return space;
     }
 
-    /** check permet de verifier si la piece choisis et belle est bien dans mon tableau piecesInGame
+    /** check permet de verifier si la piece choisis est belle et bien dans mon tableau piecesInGame
      * ce qui me permet de verifier que la pieces est conforme et criteres et qu'elle n'a pas deja etait utilisé
      * @param string du tableau des pieces restantes
      * @param string de la piece entrer de l'utilisateur
