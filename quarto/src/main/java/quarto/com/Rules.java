@@ -19,13 +19,14 @@ public class Rules{
     /*
      * Va chercher les regles dans le fichier texte et afficher ligne par ligne le texte  
      */
-    public static ArrayList placeRules() throws FileNotFoundException{
+    public static ArrayList<String> placeRules() throws FileNotFoundException{
         InputStream regle = new FileInputStream("../regle.txt");
         Scanner obj = new Scanner(regle);
         ArrayList<String> res = new ArrayList<>() ;
         while (obj.hasNextLine()) {
             res.add(obj.nextLine());
         }
+        obj.close();
         return res;
     }
 

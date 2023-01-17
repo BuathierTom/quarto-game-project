@@ -1,51 +1,104 @@
 package quarto.com;
 
-import javafx.geometry.Insets;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-
+import javafx.scene.control.ContentDisplay;
 
 
 
 public class Quarto {
+    private static String pieceSignature = " ";
     public static Stage quartoWindow(Stage mainWindow){
         
+        GridPane grid = new GridPane();
+        VBox vBox = new VBox();
         BorderPane root = new BorderPane();
-        GridPane board = new GridPane();
-        board.setPadding(new Insets(10, 10, 10, 10));
-        board.setVgap(8);
-        board.setHgap(8);
-        
+
+        // Listes de toutes les pièces du quarto
+        List<Piece> pieces = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                for (int k = 0; k < 2; k++) {
+                    for (int l = 0; l < 2; l++) {
+                        pieces.add(new Piece(i == 1, j == 1, k == 1, l == 1));
+
+                        
+                    }
+                }
+            }
+        }
+        //On verifie en les printant
+        System.out.println(pieces);
+        // Pour toutes les pièces, on créé un boutons avec une signature
+        for (Piece piece : pieces) {
+            Button button = new Button(piece.toString());
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    pieceSignature = ((Button) event.getSource()).getText();
+                }});
+            vBox.getChildren().add(button);
+            }
+        // On créé une image pour chaque bouton
+        // for (int i = 0; i < 4; i++) {
+        //     for (int j = 0; j < 4; j++) {
+        //         ImageView imageView = new ImageView();
+        //         imageView.setFitWidth(50);
+        //         imageView.setFitHeight(50);
+        //         grid.add(imageView, i, j);
+        //     }
+        // }
+
         // Create buttons for the spaces on the board
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
+
                 Button space = new Button();
                 space.setPrefSize(50, 50);
-                board.add(space, i, j);
+
+            
+                // // imageView.setFitWidth(50);
+                // imageView.setFitHeight(50);
+                // imageView.setPreserveRatio(true);
+                // space.setGraphic(imageView);
+                // space.setContentDisplay(ContentDisplay.TOP);
+
+                space.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    
+                    public void handle(ActionEvent event) {
+                        // ((Button) event.getSource()).setText(pieceSignature);
+                        System.out.println(pieceSignature);
+
+                        Image image = new Image(pieceSignature + ".png");
+                        ImageView imageView = new ImageView(image);
+
+                        imageView.setFitWidth(50);
+                        imageView.setFitHeight(50);
+                        space.setGraphic(imageView);
+                    }
+                });
+                grid.add(space, i+1, j);
             }
         }
-        root.setCenter(board);
-
-        // Create buttons for the pieces on the side
-        VBox pieces = new VBox();
-        pieces.setSpacing(8);
-        pieces.setPadding(new Insets(10, 10, 10, 10));
-        for (int i = 0; i < 16; i++) {
-            Button piece = new Button();
-            piece.setPrefSize(50, 50);
-            pieces.getChildren().add(piece);
-        }
-        root.setRight(pieces);
-
+        root.setCenter(grid);
+        root.setRight(vBox);
 
         /* Affichage de la scene : */
         Scene sceneWindow = new Scene(root, 1400, 700);
