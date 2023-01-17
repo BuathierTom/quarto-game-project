@@ -1,15 +1,11 @@
 package quarto.com;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -18,7 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.ContentDisplay;
 
 
 
@@ -30,6 +25,8 @@ public class Quarto {
         VBox vBox = new VBox();
         BorderPane root = new BorderPane();
 
+        vBox.setSpacing(3);
+
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
@@ -39,15 +36,15 @@ public class Quarto {
                         pieces.add(new Piece(i == 1, j == 1, k == 1, l == 1));
 
                         
-                    }
-                }
-            }
-        }
+            }}
+        }}
         //On verifie en les printant
         System.out.println(pieces);
+
         // Pour toutes les pièces, on créé un boutons avec une signature
         for (Piece piece : pieces) {
             Button button = new Button(piece.toString());
+            button.setPadding(new Insets(10, 20, 10, 10));
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -55,42 +52,25 @@ public class Quarto {
                 }});
             vBox.getChildren().add(button);
             }
-        // On créé une image pour chaque bouton
-        // for (int i = 0; i < 4; i++) {
-        //     for (int j = 0; j < 4; j++) {
-        //         ImageView imageView = new ImageView();
-        //         imageView.setFitWidth(50);
-        //         imageView.setFitHeight(50);
-        //         grid.add(imageView, i, j);
-        //     }
-        // }
 
         // Create buttons for the spaces on the board
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
 
                 Button space = new Button();
-                space.setPrefSize(50, 50);
-
-            
-                // // imageView.setFitWidth(50);
-                // imageView.setFitHeight(50);
-                // imageView.setPreserveRatio(true);
-                // space.setGraphic(imageView);
-                // space.setContentDisplay(ContentDisplay.TOP);
-
+                space.setPrefSize(100, 100);
+                GridPane.setMargin(space, new Insets(10, 10, 10, 10));
                 space.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
-                    
+
                     public void handle(ActionEvent event) {
-                        // ((Button) event.getSource()).setText(pieceSignature);
                         System.out.println(pieceSignature);
 
                         Image image = new Image(pieceSignature + ".png");
                         ImageView imageView = new ImageView(image);
 
-                        imageView.setFitWidth(50);
-                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(100);
+                        imageView.setFitHeight(100);
                         space.setGraphic(imageView);
                     }
                 });
