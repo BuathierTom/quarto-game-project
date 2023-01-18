@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -23,10 +25,10 @@ public class Quarto {
         
         GridPane grid = new GridPane();
         VBox vBox = new VBox();
+        ScrollPane scroll = new ScrollPane();
         BorderPane root = new BorderPane();
 
-        vBox.setSpacing(3);
-
+        vBox.setSpacing(10);
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
@@ -34,8 +36,6 @@ public class Quarto {
                 for (int k = 0; k < 2; k++) {
                     for (int l = 0; l < 2; l++) {
                         pieces.add(new Piece(i == 1, j == 1, k == 1, l == 1));
-
-                        
             }}
         }}
         //On verifie en les printant
@@ -43,7 +43,17 @@ public class Quarto {
 
         // Pour toutes les pièces, on créé un boutons avec une signature
         for (Piece piece : pieces) {
+
+            Image img = new Image(piece.toString() + ".png");
+            ImageView imgView = new ImageView(img);
+            imgView.setFitWidth(100);
+            imgView.setFitHeight(100);
+            
+
             Button button = new Button(piece.toString());
+
+            button.setGraphic(imgView);
+
             button.setPadding(new Insets(10, 20, 10, 10));
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -52,6 +62,7 @@ public class Quarto {
                 }});
             vBox.getChildren().add(button);
             }
+        scroll.setContent(vBox);
 
         // Create buttons for the spaces on the board
         for (int i = 0; i < 4; i++) {
@@ -62,13 +73,11 @@ public class Quarto {
                 GridPane.setMargin(space, new Insets(10, 10, 10, 10));
                 space.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
-
                     public void handle(ActionEvent event) {
                         System.out.println(pieceSignature);
-
+                        // Images des pieces une fois cliquer sur le plateau
                         Image image = new Image(pieceSignature + ".png");
                         ImageView imageView = new ImageView(image);
-
                         imageView.setFitWidth(100);
                         imageView.setFitHeight(100);
                         space.setGraphic(imageView);
@@ -78,7 +87,7 @@ public class Quarto {
             }
         }
         root.setCenter(grid);
-        root.setRight(vBox);
+        root.setRight(scroll);
 
         /* Affichage de la scene : */
         Scene sceneWindow = new Scene(root, 1400, 700);
