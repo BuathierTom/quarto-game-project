@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
@@ -22,12 +23,15 @@ import javafx.stage.Stage;
 public class Quarto {
     private static String pieceSignature = " ";
     public static Stage quartoWindow(Stage mainWindow){
+
+        List<Button> buttons = new ArrayList<>();
         
         GridPane grid = new GridPane();
         VBox vBox = new VBox();
         ScrollPane scroll = new ScrollPane();
         BorderPane root = new BorderPane();
 
+        grid.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
@@ -51,6 +55,7 @@ public class Quarto {
             
 
             Button button = new Button(piece.toString());
+            buttons.add(button);
 
             button.setGraphic(imgView);
 
@@ -63,6 +68,8 @@ public class Quarto {
             vBox.getChildren().add(button);
             }
         scroll.setContent(vBox);
+
+
 
         // Create buttons for the spaces on the board
         for (int i = 0; i < 4; i++) {
@@ -81,6 +88,19 @@ public class Quarto {
                         imageView.setFitWidth(100);
                         imageView.setFitHeight(100);
                         space.setGraphic(imageView);
+
+                        // On supprime le button
+                        int index = -1;
+                        for (int i = 0; i < buttons.size(); i++) {
+                            if (buttons.get(i).getText().equals(pieceSignature)) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        if (index != -1) {
+                            buttons.get(index).setVisible(false);
+                        }
+                        // button.getParent().getChildren().remove(piece.toString());
                     }
                 });
                 grid.add(space, i+1, j);
@@ -93,7 +113,7 @@ public class Quarto {
         Scene sceneWindow = new Scene(root, 1400, 700);
         Stage stageWindow = new Stage();
         /* Icone du jeu : */        
-        stageWindow.getIcons().add(new Image("https://media.istockphoto.com/id/1171091296/vector/yellow-lines-geometric-vector-logo-letter-q.jpg?s=612x612&w=0&k=20&c=dHYiRhou9QfBogpOeHVgermyBixNl7dXYs6_ozrl69I="));
+        stageWindow.getIcons().add(new Image("Q_Logo.jpg"));
         stageWindow.setTitle("QUARTO");
         stageWindow.setScene(sceneWindow);
         

@@ -56,7 +56,7 @@ public class Rules{
 
 				/* Definition d'une nouvelle fenêtre */
 				Stage rulesWindow = new Stage();
-                rulesWindow.getIcons().add(new Image("https://cdn-icons-png.flaticon.com/512/760/760205.png"));
+                rulesWindow.getIcons().add(new Image("Rules_logo.jpg"));
 				rulesWindow.setTitle("REGLES");
 				rulesWindow.setScene(secondScene);
 

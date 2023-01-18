@@ -58,7 +58,7 @@ public class Menu extends Application {
         mainLayout.setAlignment(Pos.CENTER);
         
         /* Icone du jeu : */        
-        mainWindow.getIcons().add(new Image("https://media.istockphoto.com/id/1171091296/vector/yellow-lines-geometric-vector-logo-letter-q.jpg?s=612x612&w=0&k=20&c=dHYiRhou9QfBogpOeHVgermyBixNl7dXYs6_ozrl69I="));
+        mainWindow.getIcons().add(new Image("Q_Logo.jpg"));
         /* Lancement de la scène */
         mainWindow.setTitle("QUARTO");
         Scene scene = new Scene(mainLayout, 150, 150);
