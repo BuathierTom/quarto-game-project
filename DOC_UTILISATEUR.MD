@@ -6,10 +6,10 @@ Le jeu en version terminal a été entièrement codé en Java, et c'est pour cet
 
 Sur votre environement de dév (VSCode)  
 Vous installez l'extension Maven, cette extension java vous permettra d'avoir les prêt requis pour le jeu version terminal et interface graphique  
+#
+## jeu console :
 
-## Guide de démarrage rapide :
-
-### jeu console :
+### Guide de démarrage rapide :
 
 -> le lancement se fait dans le fichier main   
 Au démarrage du jeu plusieur option son disponible comme tout d'abord l'option "help".  
@@ -30,9 +30,31 @@ Au démarrage du jeu plusieur option son disponible comme tout d'abord l'option 
     t ou timer  -> active un timer de jeu (1 min par tour)
 
 
-## Guide de gestion des pieces :
+### Guide de gestion des pieces :
 
     couleur: blanche ou noire / 0 ou 1
     forme :  ronde ou carré   / 0 ou 1
     taille:  petite ou grande / 0 ou 1
     type:    plate ou creuse  / 0 ou 1
+
+#
+
+## Jeu interface :
+
+### Guide de démarrage rapide :
+
+-> le lancement se fait dans le fichier main  
+Au lancement du jeu un petite fenetre va s'ouvrir et 3 options s'offre à vous :
+
+* Jouer  
+`Lancement de la partie `
+* Règles  
+`Affichage des règles `
+* Exit  
+`Ferme l'application `
+
+### Guide de gestion du jeu :
+
+
+Lors du lancement de la partie vous devez cliquer sur les pieces puis ensuite sur les cases pour les placer, tout en respectant les règles du jeu.
+
