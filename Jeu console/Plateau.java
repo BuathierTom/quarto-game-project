@@ -287,7 +287,7 @@ public class Plateau {
 	 * @param y
 	 * @return true or false
 	 */
-	public static boolean quartoCare(String coordo, int x, int y) {
+	public static boolean quartoCarre(String coordo, int x, int y) {
 		
 		String[] angle  = {"00","03","30","33"};
 		String[] bord   = {"01","02","10","20","13","23","31","32"};
@@ -295,7 +295,7 @@ public class Plateau {
 
 		if ( Arrays.asList(angle).contains(coordo)) {
 
-			if (angleCare(coordo,x,y) == true) {
+			if (angleCarre(coordo,x,y) == true) {
 				return true;
 			} return false;
 
@@ -303,14 +303,14 @@ public class Plateau {
 
 		if ( Arrays.asList(bord).contains(coordo)) {
 
-			if (bordCare(coordo,x,y) == true) {
+			if (bordCarre(coordo,x,y) == true) {
 				return true;
 			} return false;
 		}
 
 		if ( Arrays.asList(milieu).contains(coordo)) {
 
-			if (milieuCare(coordo,x,y) == true) {
+			if (milieuCarre(coordo,x,y) == true) {
 				return true;
 			} return false;
 		} return false;
@@ -324,7 +324,7 @@ public class Plateau {
 	 * @param y
 	 * @return
 	 */
-	public static boolean angleCare(String coordo, int x, int y) {
+	public static boolean angleCarre(String coordo, int x, int y) {
 
 		switch(coordo) {
 				
@@ -377,7 +377,7 @@ public class Plateau {
 	 * @param y
 	 * @return
 	 */
-	public static boolean bordCare(String coordo, int x, int y) {
+	public static boolean bordCarre(String coordo, int x, int y) {
 
 		switch(coordo) {
 
@@ -474,7 +474,7 @@ public class Plateau {
 	 * @param y
 	 * @return
 	 */
-	public static boolean milieuCare(String coordo, int x, int y) {
+	public static boolean milieuCarre(String coordo, int x, int y) {
 		
 		//String[] milieu = {"11","12","21","22"};
 		if (!plateau[x][y-1].equals("      ")) {

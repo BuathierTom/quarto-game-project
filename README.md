@@ -1,7 +1,8 @@
 # SAE_QUARTO
 
+## Regles
 
-# Fait:
+## Fait:
 
 > 03/10/2022
 - ajout des classes Plateau, Piece, Menu et main.
@@ -18,7 +19,7 @@
 > 08/12/2022
 - ajout d'une interface avec javafx
 
-# A faire:
+## A faire:
 
 - ajout d'une interface graphique
     - Rajouter un logo

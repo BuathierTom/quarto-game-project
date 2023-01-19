@@ -151,7 +151,7 @@ public class Menu {
                         //fin place
 
                         if (Plateau.quartoLigne(n,e) == true || Plateau.quartoColonne(n,e) == true || Plateau.quartoDiagonale(co) == true    // verifie la victoire
-                            || ( square == true && Plateau.quartoCare(co,n,e) == true)) {
+                            || ( square == true && Plateau.quartoCarre(co,n,e) == true)) {
 
                             System.out.println("\n" +"Felicitation au joueur " + joueur + " pour son QUARTO !" + "\n");
                             System.out.println("\n" + partie.plateauTerminal(ligne, colonne)+ "\n");
