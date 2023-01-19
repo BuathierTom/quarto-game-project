@@ -6,11 +6,12 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,19 +23,22 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
+
 
 
 
 public class Plateau {
     private static String pieceSignature = " ";
-    private static Piece[][] board;
-
+    static int id = 0;
+    private static Boolean victoire = false;
 
     public static Stage quartoWindow(Stage mainWindow){
 
-        List<Button> buttons = new ArrayList<>();
-        board = new Piece[4][4];
+        List<Button> buttons_Img = new ArrayList<>();
+        List<Button> grille = new ArrayList<>();
+
         
         GridPane grid = new GridPane();
         VBox vBox = new VBox();
@@ -43,8 +47,10 @@ public class Plateau {
 
         grid.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
+
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
+
         List<Boolean> verfiBool = Arrays.asList(false, true);
 
         for (Boolean estRond : verfiBool) {
@@ -56,8 +62,9 @@ public class Plateau {
         }}
 
         //On verifie en les printant
-        System.out.println(pieces);
+        // System.out.println(pieces);
         // Pour toutes les pièces, on créé un boutons avec une signature
+        
         for (Piece piece : pieces) {
 
             Image img = new Image(piece.toString() + ".png");
@@ -65,9 +72,8 @@ public class Plateau {
             imgView.setFitWidth(100);
             imgView.setFitHeight(100);
             
-
             Button button = new Button(piece.toString());
-            buttons.add(button);
+            buttons_Img.add(button);
 
             button.setGraphic(imgView);
 
@@ -75,21 +81,28 @@ public class Plateau {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+
+                    for (int i=0;i<buttons_Img.size();i++){
+                        if (event.getSource()  == buttons_Img.get(i)){
+                            id = i;
+                        }
+                    }
+
                     pieceSignature = ((Button) event.getSource()).getText();
                 }});
             vBox.getChildren().add(button);
             }
         scroll.setContent(vBox);
 
-
-
-        // Create buttons for the spaces on the board
+        
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
 
                 Button space = new Button();
                 space.setPrefSize(100, 100);
                 GridPane.setMargin(space, new Insets(10, 10, 10, 10));
+                grille.add(space);
+
                 space.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -100,25 +113,36 @@ public class Plateau {
                         imageView.setFitWidth(100);
                         imageView.setFitHeight(100);
                         space.setGraphic(imageView);
-
                         // On supprime le button séléctionner pour pas pouvoir le reposer
                         int index = -1;
-                        for (int i = 0; i < buttons.size(); i++) {
-                            if (buttons.get(i).getText().equals(pieceSignature)) {
+                        for (int i = 0; i < buttons_Img.size(); i++) {
+                            if (buttons_Img.get(i).getText().equals(pieceSignature)) {
                                 index = i;
                                 break;
                             }
                         }
                         if (index != -1) {
-                            buttons.get(index).setVisible(false);
+                            buttons_Img.get(index).setVisible(false);
                         }
                         pieceSignature = " ";
+
+                        // On verifie qu'on gagne
+
+                        victoire = Verification.checkWin(grille, pieces);
+                        if (victoire == true) {
+                            System.out.println("Le joueur a gagné !");
+                        }else{
+                            System.out.println("AAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHH");
+                        }
+
+
                     }
                 });
                 grid.add(space, i+1, j);
             }
         }
-        
+
+    
         // On place dans le centralLayout
         centralLayout.setCenter(grid);
         centralLayout.setRight(scroll);

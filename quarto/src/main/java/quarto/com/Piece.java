@@ -13,6 +13,13 @@ public class Piece {
         this.estBlanc = estBlanc;
     }
 
+    public Piece(Piece p){
+        this.estRond = p.estRond;
+        this.estPetit = p.estPetit;
+        this.estCreux = p.estCreux;
+        this.estBlanc = p.estBlanc;
+    }
+
     public boolean estRond() {
         return estRond;
     }

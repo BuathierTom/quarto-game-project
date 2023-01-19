@@ -64,7 +64,7 @@ public class Menu {
                 // affiche les regles sur un .txt
                 case "r":
                 case "rules":
-                    InputStream regle = new FileInputStream("regle.txt");
+                    InputStream regle = new FileInputStream("../regle.txt");
                     Scanner obj = new Scanner(regle);
                     while (obj.hasNextLine()) {
                         System.out.println("\n"+obj.nextLine()+"\n");
