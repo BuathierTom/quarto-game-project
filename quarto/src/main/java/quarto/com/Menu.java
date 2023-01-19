@@ -30,7 +30,6 @@ public class Menu extends Application {
                 Stage playWindows;
                 playWindows = Plateau.quartoWindow(mainWindow);
                 playWindows.show();
-                
                 Stage stage = (Stage) play.getScene().getWindow();
                 stage.close();
         }});
@@ -56,7 +55,6 @@ public class Menu extends Application {
         /* Insertion des boutons */
         mainLayout.getChildren().addAll(play, regles, exit);
         mainLayout.setAlignment(Pos.CENTER);
-        
         /* Icone du jeu : */        
         mainWindow.getIcons().add(new Image("Q_Logo.jpg"));
         /* Lancement de la scène */
@@ -66,7 +64,10 @@ public class Menu extends Application {
         mainWindow.show();
     }
 
-    /* LANCE LE PROGRAMME */
+    /**
+     * Lance le programme
+     * @param args
+     */
     public static void startQUARTO(String[] args) {
         Menu.launch(args);
     }

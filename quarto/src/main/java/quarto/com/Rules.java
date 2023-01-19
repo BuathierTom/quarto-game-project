@@ -1,5 +1,5 @@
+/* Imports */
 package quarto.com;
-
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,13 +16,16 @@ import javafx.stage.Stage;
 
 public class Rules{
 
-    /*
+    /**
      * Va chercher les regles dans le fichier texte et afficher ligne par ligne le texte  
+     * @return Une liste de String avec chaque ligne du fichier "regle.txt"
      */
     public static ArrayList<String> placeRules() throws FileNotFoundException{
+        // Récuperation du fichier texte de rules
         InputStream regle = new FileInputStream("../regle.txt");
         Scanner obj = new Scanner(regle);
         ArrayList<String> res = new ArrayList<>() ;
+        // Je lis chaque ligne du fichier règles
         while (obj.hasNextLine()) {
             res.add(obj.nextLine());
         }
@@ -30,8 +33,10 @@ public class Rules{
         return res;
     }
 
-    /*
+    /**
      * Créé une fenetre avec les regles affichées dedans grace a la fonction créé juste avant
+     * @param mainWindow La fenêtre créé dans plateau.java et passer en parametre
+     * @return un stage et qui est affichable dans la classe plateau.java
      */
     public static Stage windowRules(Stage mainWindow){
         /* Liste de String qui va contenir toutes les règles */

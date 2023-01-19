@@ -1,19 +1,19 @@
 # Doc Utilisateur Quarto
 
-## Guide d'instalation :
+## Guide d'installation :
 
 Le jeu en version terminal a été entièrement codé en Java, et c'est pour cette raison que vous devez installer Java 
 
-Sur votre environement de dév (VSCode)  
+Sur votre environement de développement (VSCode)  
 Vous installez l'extension Maven, cette extension java vous permettra d'avoir les prêt requis pour le jeu version terminal et interface graphique  
 #
-## jeu console :
+## Jeu console :
 
 ### Guide de démarrage rapide :
 
 -> le lancement se fait dans le fichier main   
-Au démarrage du jeu plusieur option son disponible comme tout d'abord l'option "help".  
--> une liste de toutes les possibilités disponible et leur utilisations vous sera disponible
+Au démarrage du jeu plusieurs options sont disponible comme tout d'abord l'option "help".  
+-> une liste de toutes les possibilitées disponible et leur utilisations vous seras disponible
 
     Taper "h" ou "help" pour lister les commandes disponibles
 
@@ -55,6 +55,7 @@ Au lancement du jeu un petite fenetre va s'ouvrir et 3 options s'offre à vous :
 
 ### Guide de gestion du jeu :
 
-
 Lors du lancement de la partie vous devez cliquer sur les pieces puis ensuite sur les cases pour les placer, tout en respectant les règles du jeu.
+
+
 
