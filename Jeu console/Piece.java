@@ -10,7 +10,7 @@ public class Piece {
     // 
     // couleur: blanche ou noire / 0 ou 1
     // forme :  ronde ou carré   / 0 ou 1
-    // taille:  petite ou grande / 0 ou 1
+    // taille:  court ou long / 0 ou 1
     // type:    plate ou creuse  / 0 ou 1
     //
     // Soit 4 bits en binaire

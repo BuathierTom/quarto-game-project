@@ -65,7 +65,10 @@ public class Piece {
      * Exemple : Rond_Court_Creux_Blanc
      */
     public String toString() {
-        return (estRond ? "Rond" : "Carre") + "_" + (estPetit ? "Court" : "Long") + "_" + (estCreux ? "Creux" : "Plein") + "_" + (estBlanc ? "Blanc" : "Noir");
+        return (estBlanc ? "Blanc" : "Noir") +
+        "_" + (estRond ? "Rond" : "Carre") + 
+        "_" + (estPetit ? "Court" : "Long") + 
+        "_" + (estCreux ? "Creux" : "Plein");
     }
 }
 
