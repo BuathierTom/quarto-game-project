@@ -84,6 +84,7 @@ public class Plateau {
                 public void handle(ActionEvent event) {
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
                     pieceSignature = ((Button) event.getSource()).getText();
+                    Verification.binaireChange(pieceSignature);
                 }});
             vBox.getChildren().add(button);
             }
@@ -120,13 +121,13 @@ public class Plateau {
                         }
                         pieceSignature = " ";
 
-                        // On verifie qui gagne
-                        victoire = Verification.checkWin(grille, pieces);
-                        if (victoire == true) {
-                            System.out.println("Le test a gagné !");
-                        }else{
-                            System.out.println("test");
-                        }
+                        // // On verifie qui gagne
+                        // victoire = Verification.checkWin(grille, pieces);
+                        // if (victoire == true) {
+                        //     System.out.println("Le test a gagné !");
+                        // }else{
+                        //     System.out.println("test");
+                        // }
                     }
                 });
                 grid.add(buttonGrille, i+1, j);

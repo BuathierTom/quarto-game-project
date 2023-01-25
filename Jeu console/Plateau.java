@@ -221,7 +221,7 @@ public class Plateau {
 		String binaire = (case1 + case2 + case3 + case4);                     // 0000  0001  0010  0011
 		binaire = binaire.replaceAll("\\s", "");           // 0000000100100011
 
-		if (binaire.charAt(0)== binaire.charAt(4) && binaire.charAt(8)== binaire.charAt(12)) {
+		if (binaire.charAt(0) == binaire.charAt(4) && binaire.charAt(8)== binaire.charAt(12)) {
 			afficheWin(case1, case2, case3, case4);
 			return true;
 		}
