@@ -26,9 +26,6 @@ import javafx.scene.layout.VBox;
 
 import javafx.stage.Stage;
 
-
-
-
 public class Plateau {
     // Définition des variables utile
     private static String pieceSignature = " ";
