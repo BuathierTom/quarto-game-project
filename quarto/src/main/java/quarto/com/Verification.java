@@ -212,6 +212,21 @@ public class Verification {
 		return false;
 	}
 
+	public static int tranfoPositionsX(int posX){
+
+		
+
+
+		return posX;
+	}
+
+	public static int tranfoPositionsY(int posY){
+
+
+
+		return posY;
+	}
+
 
 }
 
