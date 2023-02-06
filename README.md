@@ -2,10 +2,6 @@
 
 ## Le QUARTO - KEZAKO
 
-<a href="https://github.com/BuathierTom/SAE_QUARTO">
-  <img src="https://img.shields.io/tokei/lines/github/NotEnoughUpdates/NotEnoughUpdates-REPO?color=success&logo=github&logoColor=FFFFFF" alt="lines">
-</a>
-
 `Presentation :`
 
 > Le Quarto est un jeu de societe pour deux joueurs. Il se joue sur un plateau de jeu avec 16 pieces, chaque pieces ayant des caracteristiques differentes parmi les suivantes : couleur (noir ou blanc), hauteur (haut ou bas), remplissage (creux ou plein) et forme (carre ou rond).

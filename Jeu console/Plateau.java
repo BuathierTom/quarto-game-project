@@ -55,7 +55,6 @@ public class Plateau {
 			return true;					
 	}
 
-
 	/** Print le plateau de jeu sur le terminal
 	 * et met a jour le placement des pieces
 	 * @param ligne

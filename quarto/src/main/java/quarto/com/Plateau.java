@@ -30,6 +30,7 @@ public class Plateau {
     // Définition des variables utile
     private static String pieceSignature = " ";
     private static Boolean victoire = false;
+    private static String[][] plateau;
 
     /**
      * Methode qui permet de renvoyer une fenetre de jeu dans le programme Menu.java. 
@@ -116,10 +117,25 @@ public class Plateau {
                         if (index != -1) {
                             buttons_Img.get(index).setVisible(false);
                         }
+
+
                         double posX = buttonGrille.getLayoutX();
                         double posY = buttonGrille.getLayoutY();
 
                         System.out.println("X : " + posX + ", Y : " + posY);
+
+                        String positions = Verification.tranfoPositions(buttonGrille.getLayoutX(), buttonGrille.getLayoutY());
+
+                        System.out.println("Position : " + positions);
+
+                        for (int i = 0; i < ligne; i++) {
+                            for(int j = 0; j < colonne; j++) {
+                                if(j == colonne-1)
+                                    stringPlateau += plateau[i][j];
+                                else
+                                    stringPlateau += plateau[i][j];
+                            }
+                        }
 
                         pieceSignature = " ";
 

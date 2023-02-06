@@ -22,7 +22,7 @@ public class Verification {
      * @param pieceString Pièce reçu en texte (Exple: "Rond_Court_Creux_Blanc")
      */
     public static String binaireChange(String pieceString){
-        String binPiece = " "; // Pièce en binaire
+        String binPiece = ""; // Pièce en binaire
 
         String zero = "0"; // 0
         String un = "1"; // 1
@@ -212,21 +212,51 @@ public class Verification {
 		return false;
 	}
 
-	public static int tranfoPositionsX(int posX){
+	/**
+	 * Transforme les positions récuperer par les boutons et les tranformes en position utilisable
+	 * @param posX
+	 * @param posY
+	 * @return
+	 */
+	public static String tranfoPositions(double posX, double posY){
 
-		
+		String positionX = "";
+		String positionY = "";
 
+		String positions = "";
 
-		return posX;
+		// On verifie et attribue des valeurs pour la position en X
+		if (posX == 336.8) {
+			positionX += "0";
+		}
+		else if (posX == 457.6) {
+			positionX += "1";
+		}
+		else if (posX == 579.2) {
+			positionX += "2";
+		}
+		else if (posX == 700.0) {
+			positionX += "3";
+		}
+
+		// On verifie et attribue des valeurs pour la position en X
+		if (posY == 118.4) {
+			positionY += "0";
+		}
+		else if (posY == 240.0) {
+			positionY += "1";
+		}
+		else if (posY == 360.8) {
+			positionY += "2";
+		}
+		else if (posY == 481.6) {
+			positionY += "3";
+		}
+
+		positions = positionX + positionY;
+
+		return positions;
 	}
-
-	public static int tranfoPositionsY(int posY){
-
-
-
-		return posY;
-	}
-
 
 }
 
