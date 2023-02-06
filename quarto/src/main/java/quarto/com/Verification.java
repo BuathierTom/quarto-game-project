@@ -3,6 +3,9 @@ package quarto.com;
 import java.util.Arrays;
 
 public class Verification {
+
+	// Variables de plateau pour la vérification des cases
+
     private static String[][] plateau;
 	private static int cases = 0;
     private int ligne, colonne;
@@ -89,7 +92,7 @@ public class Verification {
 		}
 	}
 
-    	/** Verifie la ligne de la derniere piece joué.
+    /** Verifie la ligne de la derniere piece joué.
 	 * 	Check d'abord si il y a des cases vide sur la ligne 
 	 * 	si ce n'est pas le cas verifie le quarto
 	 * @param x
@@ -152,7 +155,6 @@ public class Verification {
 		return false;
 	}
 
-
 	/** Verifie les quarto sur les deux diagonales possibles
 	 *  Cette fonction contient deux tableau avec toutes les cases presente en diagonale
 	 *  elle verifie d'abord si la case est presente sur une des deux diagonales
@@ -199,8 +201,6 @@ public class Verification {
 		}
 		return false;
 	}
-
-
 
 	/** Verifie l'egalite
 	 *  Si toute les cases sont prises et qu'il n 'y pas de quarto retourne 'true'
