@@ -102,8 +102,8 @@ public class Plateau {
                         // Images des pieces une fois cliquer sur le plateau
                         Image image = new Image(pieceSignature + ".png");
                         ImageView imageView = new ImageView(image);
-                        imageView.setFitWidth(100);
-                        imageView.setFitHeight(100);
+                        imageView.setFitWidth(75);
+                        imageView.setFitHeight(75);
                         buttonGrille.setGraphic(imageView);
                         // On supprime le button séléctionner pour pas pouvoir le reposer
                         int index = -1;
@@ -157,6 +157,7 @@ public class Plateau {
         stageWindow.getIcons().add(new Image("Q_Logo.jpg"));
         stageWindow.setTitle("QUARTO");
         stageWindow.setScene(sceneWindow);
+        stageWindow.setResizable(false);
         // On return la fenetre
         return stageWindow;
     }
