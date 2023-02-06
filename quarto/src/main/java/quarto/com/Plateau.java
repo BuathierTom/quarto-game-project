@@ -116,6 +116,11 @@ public class Plateau {
                         if (index != -1) {
                             buttons_Img.get(index).setVisible(false);
                         }
+                        double posX = buttonGrille.getLayoutX();
+                        double posY = buttonGrille.getLayoutY();
+
+                        System.out.println("X : " + posX + ", Y : " + posY);
+
                         pieceSignature = " ";
 
                         // // On verifie qui gagne

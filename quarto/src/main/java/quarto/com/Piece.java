@@ -9,7 +9,7 @@ public class Piece {
 
     /**
      * Constructeur par défaut
-     * @param estRond true ou false
+     * @param estRond  true ou false
      * @param estPetit true ou false
      * @param estCreux true ou false
      * @param estBlanc true ou false
