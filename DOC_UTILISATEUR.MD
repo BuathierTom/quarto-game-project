@@ -1,4 +1,5 @@
-# Doc Utilisateur Quarto
+
+# <div align="center">Documentation Utilisateur Quarto </div>
 
 ## Guide d'installation :
 
