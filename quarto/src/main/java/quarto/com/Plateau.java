@@ -49,6 +49,12 @@ public class Plateau {
         // On centre la grille
         grid.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
+        // Création d'une liste qui représentera la grille
+
+        plateau = new String[4][4];
+
+		Verification.generationPlateau();
+
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
         List<Boolean> verfiBool = Arrays.asList(false, true);
@@ -100,12 +106,8 @@ public class Plateau {
                 buttonGrille.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        // Images des pieces une fois cliquer sur le plateau
-                        Image image = new Image(pieceSignature + ".png");
-                        ImageView imageView = new ImageView(image);
-                        imageView.setFitWidth(75);
-                        imageView.setFitHeight(75);
-                        buttonGrille.setGraphic(imageView);
+                        // // Images des pieces une fois cliquer sur le plateau
+                        ImagePion.placeImage(pieceSignature, buttonGrille);
                         // On supprime le button séléctionner pour pas pouvoir le reposer
                         int index = -1;
                         for (int i = 0; i < buttons_Img.size(); i++) {
@@ -118,25 +120,19 @@ public class Plateau {
                             buttons_Img.get(index).setVisible(false);
                         }
 
-
+                        // On récupere les positions des boutons
                         double posX = buttonGrille.getLayoutX();
                         double posY = buttonGrille.getLayoutY();
 
                         System.out.println("X : " + posX + ", Y : " + posY);
 
-                        String positions = Verification.tranfoPositions(buttonGrille.getLayoutX(), buttonGrille.getLayoutY());
+                        String positions = Verification.tranfoPositions(posX, posY);
 
                         System.out.println("Position : " + positions);
 
-                        for (int i = 0; i < ligne; i++) {
-                            for(int j = 0; j < colonne; j++) {
-                                if(j == colonne-1)
-                                    stringPlateau += plateau[i][j];
-                                else
-                                    stringPlateau += plateau[i][j];
-                            }
-                        }
+                        System.out.println("PLATEAU : \n" + plateau);
 
+                        // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
 
                         // // On verifie qui gagne

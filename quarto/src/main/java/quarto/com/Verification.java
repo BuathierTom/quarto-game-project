@@ -6,9 +6,10 @@ public class Verification {
 
 	// Variables de plateau pour la vérification des cases
 
-    private static String[][] plateau;
-	private static int cases = 0;
-    private int ligne, colonne;
+    public static String[][] plateau;
+	public static int cases = 0;
+    public static int ligne;
+	public static int colonne;
     
     /**
      * Méthode qui permet de change une pièce a partir d'un texte (Exple: "Noir_Carre_Long_Plein")
@@ -58,10 +59,10 @@ public class Verification {
     /** 
      * Génération du plateau vide 
     */
-	public void generationPlateau() {
+	public static void generationPlateau() {
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				plateau[i][j] = "      ";
+				plateau[i][j] = " ";
 			}
 		}
 	}
@@ -207,7 +208,6 @@ public class Verification {
 	 * @return true or false
 	 */
 	public static boolean egalite() {
-
 		if (cases == 16) return true;
 		return false;
 	}
