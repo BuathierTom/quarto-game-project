@@ -29,8 +29,8 @@ import javafx.stage.Stage;
 public class Plateau {
     // Définition des variables utile
     private static String pieceSignature = " ";
-    private static Boolean victoire = false;
-    private static String[][] plateau;
+
+    private static int cases = 0;
 
     /**
      * Methode qui permet de renvoyer une fenetre de jeu dans le programme Menu.java. 
@@ -50,10 +50,11 @@ public class Plateau {
         grid.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         // Création d'une liste qui représentera la grille
+        String plateau = "";
 
-        plateau = new String[4][4];
 
-		Verification.generationPlateau();
+        plateau = Verification.plateauTerminal(4,4);
+        System.out.println(plateau);
 
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
@@ -109,6 +110,7 @@ public class Plateau {
                         // // Images des pieces une fois cliquer sur le plateau
                         ImagePion.placeImage(pieceSignature, buttonGrille);
                         // On supprime le button séléctionner pour pas pouvoir le reposer
+                        
                         int index = -1;
                         for (int i = 0; i < buttons_Img.size(); i++) {
                             if (buttons_Img.get(i).getText().equals(pieceSignature)) {
@@ -120,28 +122,12 @@ public class Plateau {
                             buttons_Img.get(index).setVisible(false);
                         }
 
-                        // On récupere les positions des boutons
-                        double posX = buttonGrille.getLayoutX();
-                        double posY = buttonGrille.getLayoutY();
-
-                        System.out.println("X : " + posX + ", Y : " + posY);
-
-                        String positions = Verification.tranfoPositions(posX, posY);
+                        String positions = Verification.tranfoPositions(buttonGrille.getLayoutX(), buttonGrille.getLayoutY());
 
                         System.out.println("Position : " + positions);
 
-                        System.out.println("PLATEAU : \n" + plateau);
-
                         // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
-
-                        // // On verifie qui gagne
-                        // victoire = Verification.checkWin(grille, pieces);
-                        // if (victoire == true) {
-                        //     System.out.println("Le test a gagné !");
-                        // }else{
-                        //     System.out.println("test");
-                        // }
                     }
                 });
                 grid.add(buttonGrille, i+1, j);

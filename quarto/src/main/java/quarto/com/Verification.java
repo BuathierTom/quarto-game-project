@@ -56,15 +56,82 @@ public class Verification {
         return binPiece;
     }
 
-    /** 
-     * Génération du plateau vide 
-    */
-	public static void generationPlateau() {
+		/** Print le plateau de jeu sur le terminal
+	 * et met a jour le placement des pieces
+	 * @param ligne
+	 * @param colonne
+	 * @return Le plateau avec ses modification
+	 */
+	public static String plateauTerminal(int ligne, int colonne) {
+		String stringPlateau= "";
+
+		plateau = new String[4][4];
+
 		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
-				plateau[i][j] = " ";
+			for(int j = 0; j < colonne; j++) {
+				if(j == colonne-1)
+					stringPlateau += plateau[i][j];
+				else
+					stringPlateau += plateau[i][j] + "|";
+			}
+			if (i != ligne-1) {
+				stringPlateau += "\n";
+				for (int j=0;j< colonne;j++) {
+					if (j == colonne-1)
+						stringPlateau += "______";
+					else
+						stringPlateau +="_______";
+				}
+				stringPlateau += "\n";
 			}
 		}
+		return stringPlateau;
+	}
+	
+	/**
+	 * Transforme les positions récuperer par les boutons et les tranformes en position utilisable
+	 * @param posX
+	 * @param posY
+	 * @return
+	 */
+	public static String tranfoPositions(double posX, double posY){
+
+		String positionX = "";
+		String positionY = "";
+
+		String positions = "";
+
+		// On verifie et attribue des valeurs pour la position en X
+		if (posX == 336.8) {
+			positionX += "0";
+		}
+		else if (posX == 457.6) {
+			positionX += "1";
+		}
+		else if (posX == 579.2) {
+			positionX += "2";
+		}
+		else if (posX == 700.0) {
+			positionX += "3";
+		}
+
+		// On verifie et attribue des valeurs pour la position en X
+		if (posY == 118.4) {
+			positionY += "0";
+		}
+		else if (posY == 240.0) {
+			positionY += "1";
+		}
+		else if (posY == 360.8) {
+			positionY += "2";
+		}
+		else if (posY == 481.6) {
+			positionY += "3";
+		}
+
+		positions = positionX + positionY;
+
+		return positions;
 	}
 
     /** Permet de verifier si il y a un quarto ou non
@@ -212,51 +279,7 @@ public class Verification {
 		return false;
 	}
 
-	/**
-	 * Transforme les positions récuperer par les boutons et les tranformes en position utilisable
-	 * @param posX
-	 * @param posY
-	 * @return
-	 */
-	public static String tranfoPositions(double posX, double posY){
-
-		String positionX = "";
-		String positionY = "";
-
-		String positions = "";
-
-		// On verifie et attribue des valeurs pour la position en X
-		if (posX == 336.8) {
-			positionX += "0";
-		}
-		else if (posX == 457.6) {
-			positionX += "1";
-		}
-		else if (posX == 579.2) {
-			positionX += "2";
-		}
-		else if (posX == 700.0) {
-			positionX += "3";
-		}
-
-		// On verifie et attribue des valeurs pour la position en X
-		if (posY == 118.4) {
-			positionY += "0";
-		}
-		else if (posY == 240.0) {
-			positionY += "1";
-		}
-		else if (posY == 360.8) {
-			positionY += "2";
-		}
-		else if (posY == 481.6) {
-			positionY += "3";
-		}
-
-		positions = positionX + positionY;
-
-		return positions;
-	}
-
 }
+
+
 
