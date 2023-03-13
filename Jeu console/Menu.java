@@ -142,7 +142,7 @@ public class Menu {
                             coord = scan.nextLine();
                             int x = intAt(coord, 0);                                                       // appelle la fonction intAt pour recuperer
                             int y = intAt(coord, 1);                                                       // des int séparer d'un entree terminale
-                            n = x; 
+                            n = x;
                             e = y;
                             co = coord;
                             i = Plateau.setPiece(x,y,piece_choisie);                                              // verifie si la case est libre ou pose la piece

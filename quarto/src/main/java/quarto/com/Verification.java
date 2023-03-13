@@ -1,5 +1,6 @@
 package quarto.com;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Verification {
@@ -51,55 +52,18 @@ public class Verification {
             }else if(caracteristiques.equals("Creux")) {
                 binPiece = binPiece + un;
             }
-            System.out.println(binPiece);
         }
         return binPiece;
     }
 
-		/** Print le plateau de jeu sur le terminal
-	 * et met a jour le placement des pieces
-	 * @param ligne
-	 * @param colonne
-	 * @return Le plateau avec ses modification
-	 */
-	public static String plateauTerminal(int ligne, int colonne) {
-		String stringPlateau= "";
-
-		plateau = new String[4][4];
-
-		for (int i = 0; i < ligne; i++) {
-			for(int j = 0; j < colonne; j++) {
-				if(j == colonne-1)
-					stringPlateau += plateau[i][j];
-				else
-					stringPlateau += plateau[i][j] + "|";
-			}
-			if (i != ligne-1) {
-				stringPlateau += "\n";
-				for (int j=0;j< colonne;j++) {
-					if (j == colonne-1)
-						stringPlateau += "______";
-					else
-						stringPlateau +="_______";
-				}
-				stringPlateau += "\n";
-			}
-		}
-		return stringPlateau;
-	}
-	
 	/**
-	 * Transforme les positions récuperer par les boutons et les tranformes en position utilisable
+	 * Transforme la position X récuperé par les boutons et les tranformes en position utilisable
 	 * @param posX
-	 * @param posY
 	 * @return
 	 */
-	public static String tranfoPositions(double posX, double posY){
+	public static String tranfoPositionX(double posX){
 
 		String positionX = "";
-		String positionY = "";
-
-		String positions = "";
 
 		// On verifie et attribue des valeurs pour la position en X
 		if (posX == 336.8) {
@@ -115,6 +79,18 @@ public class Verification {
 			positionX += "3";
 		}
 
+		return positionX;
+	}
+
+	/**
+	 * Transforme la position de Y récuperé par les boutons et les tranformes en position utilisable
+	 * @param posY
+	 * @return
+	 */
+	public static String tranfoPositionY(double posY){
+
+		String positionY = "";
+
 		// On verifie et attribue des valeurs pour la position en X
 		if (posY == 118.4) {
 			positionY += "0";
@@ -129,10 +105,9 @@ public class Verification {
 			positionY += "3";
 		}
 
-		positions = positionX + positionY;
-
-		return positions;
+		return positionY;
 	}
+
 
     /** Permet de verifier si il y a un quarto ou non
 	 *  elle reçoit en paramêtre 16 chiffres 0 ou 1 et verifie si il y a une
@@ -279,7 +254,70 @@ public class Verification {
 		return false;
 	}
 
+	/** Place le coup du joueur en verifiant si la case est disponible
+	 * @param int x Coordonnées x (lignes)
+	 * @param int y Coordonnées y (colonnes)
+	 * @param String
+	 * @return true: la case est vide, false: la case est prise
+	 */
+	public static boolean setPiece(int x, int y, String pieceJoueur) {
+		if (plateau[x][y].equals("null")) {
+			plateau[x][y] = " " + pieceJoueur + " ";
+			cases ++;
+			return true;
+		}
+		return false;
+	}
+
+	/* 
+	* Création d'un tableau de 4 par 4 qui représente un plateau de quarto 
+	*/
+	public static void initPlateau() {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				plateau[i][j] = "      ";
+			}
+		}
+	}
+
+	/** 
+	 * Affiche le plateau de jeu
+	 * 
+	 */
+	public static String affichePlateau() {
+		String affichage = "";
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				affichage += plateau[i][j];
+			}
+			affichage += "";
+		}
+		return affichage;
+	}
+
+	/**
+	 * Ajouter une piece dans le plateau en utilisant le tableau pieces
+	 */
+	public static void addPiece(ArrayList<Integer> pieces) {
+		int i = 0;
+		while (i < 16) {
+			int x = (int) (Math.random() * 4);
+			int y = (int) (Math.random() * 4);
+			if (plateau[x][y].equals("      ")) {
+				plateau[x][y] = pieces[i];
+				i++;
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-

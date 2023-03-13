@@ -52,9 +52,12 @@ public class Plateau {
         // Création d'une liste qui représentera la grille
         String plateau = "";
 
+        // Création du plateau en terminal
 
-        plateau = Verification.plateauTerminal(4,4);
-        System.out.println(plateau);
+        // plateau = Verification.plateauTerminal(4,4);
+        // System.out.println(plateau);
+
+        
 
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
@@ -67,8 +70,8 @@ public class Plateau {
                         pieces.add(new Piece(estRond, estPetit, estCreux, estBlanc));
             }}
         }}
-        //On verifie en les printants
-        System.out.println(pieces);
+        // //On verifie en les printants
+        // System.out.println(pieces);
         // Pour toutes les pièces, on créé un bouton avec une signature
         for (Piece piece : pieces) {
             // L'image des pieces dans la ScrollPane
@@ -98,7 +101,7 @@ public class Plateau {
         // On ajoute les boutons pour la grille
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                // ON créé le bouton
+                // On créé le bouton
                 Button buttonGrille = new Button();
                 buttonGrille.setPrefSize(100, 100);
                 GridPane.setMargin(buttonGrille, new Insets(10, 10, 10, 10));
@@ -122,15 +125,28 @@ public class Plateau {
                             buttons_Img.get(index).setVisible(false);
                         }
 
-                        String positions = Verification.tranfoPositions(buttonGrille.getLayoutX(), buttonGrille.getLayoutY());
 
-                        System.out.println("Position : " + positions);
+                        String positionX = Verification.tranfoPositionX(buttonGrille.getLayoutX());
+                        String positionY = Verification.tranfoPositionY(buttonGrille.getLayoutY());
+
+                        int pX = Integer.parseInt(positionX);
+                        int pY = Integer.parseInt(positionY);
+
+                        String coords = positionX + positionY;
+
+                        Boolean oue = Verification.setPiece(pX,pY,pieceSignature);  
+
+
+
+                        // System.out.println("Position : " + positions);
 
                         // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
                     }
+
                 });
                 grid.add(buttonGrille, i+1, j);
+                // On affiche le plateau
             }
         }    
         // On place dans le centralLayout
