@@ -28,19 +28,22 @@ public class Plateau {
      * 
      */
 
+    private static int ligne = 4;
+    private static int colonne = 4;
+
     public static String affichePlateau(String[][] plateau) {
         String stringPlateau= "";
-		for (int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				if(j == 4-1)
-					stringPlateau += plateau[i][j];
+		for (int i = 0; i < ligne; i++) {
+			for(int j = 0; j < colonne; j++) {
+				if(j == colonne-1)
+					stringPlateau += plateau[j][i];
 				else
-					stringPlateau += plateau[i][j] + "|";
+					stringPlateau += plateau[j][i] + "|";
 			}
-			if (i != 4-1) {
+			if (i != ligne-1) {
 				stringPlateau += "\n";
-				for (int j=0;j< 4;j++) {
-					if (j == 4-1)
+				for (int j=0;j< colonne;j++) {
+					if (j == colonne-1)
 						stringPlateau += "______";
 					else
 						stringPlateau +="_______";
