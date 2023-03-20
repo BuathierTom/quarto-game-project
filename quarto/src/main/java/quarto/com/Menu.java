@@ -28,7 +28,7 @@ public class Menu extends Application {
             @Override
             public void handle(ActionEvent e) {
                 Stage playWindows;
-                playWindows = Plateau.quartoWindow(mainWindow);
+                playWindows = SoloGame.quartoWindow(mainWindow);
                 playWindows.show();
                 Stage stage = (Stage) play.getScene().getWindow();
                 stage.close();
