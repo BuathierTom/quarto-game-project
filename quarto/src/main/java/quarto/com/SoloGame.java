@@ -50,6 +50,9 @@ public class SoloGame {
         grid.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
 
+        // Création du plateau terminal
+        String[][] plateau = Plateau.initPlateau();
+
         // Création du plateau en terminal
 
         // plateau = Verification.plateauTerminal(4,4);
@@ -96,10 +99,6 @@ public class SoloGame {
             }
         scroll.setContent(vBox);
 
-        
-        // Création du plateau terminal
-        String[][] plateau = Plateau.initPlateau();
-
         System.out.println(Plateau.affichePlateau(plateau));
 
         // On ajoute les boutons pour la grille
@@ -140,23 +139,29 @@ public class SoloGame {
 
                         Boolean i = Plateau.setPiece(pX,pY,pieceSignature,plateau);  
 
+                        // ajout de la piece dans le plateau
+                        plateau[pX][pY] = pieceSignature;
 
+                        System.out.println("plateau : " + plateau[pX][pY] + "\n");
 
-                        while (i == false) {
-                            if (Verification.quartoLigne(pX,pY) == true || Verification.quartoColonne(pX,pY) == true || Verification.quartoDiagonale(coords) == true) {
+                        
+                        if (Verification.quartoLigne(pX,pY, plateau) == true 
+                            || Verification.quartoColonne(pX,pY, plateau) == true 
+                            || Verification.quartoDiagonale(coords, plateau) == true) {
 
-                            System.out.println("Quarto en LIGNE!");
-                            System.out.println(Plateau.affichePlateau(plateau));
-                            break;
-                        }else {
+                                System.out.println("Quarto en LIGNE!");
+                                System.out.println(Plateau.affichePlateau(plateau));
+                                
+                        } else {
                             // Le tour continue et on print le plateau
-                            System.out.println("Quarto en LIGNE!");
+                            System.out.println("Continuez le jeu");
                             System.out.println(Plateau.affichePlateau(plateau));
 
-                            i = true;
-                        }
+
                             
                         }
+                            
+                        
 
 
                         

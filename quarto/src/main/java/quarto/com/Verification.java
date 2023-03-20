@@ -142,8 +142,8 @@ public class Verification {
 	 * @param y
 	 * @return true or false
 	 */
-	public static boolean quartoLigne(int x, int y) {
-	
+	public static boolean quartoLigne(int x, int y, String[][] plateau) {
+		
 		int bis = y + 1;
 
 		while (bis >= 0 && bis <= 3) {
@@ -174,7 +174,7 @@ public class Verification {
 	 * @param y
 	 * @return true or false
 	 */
-	public static boolean quartoColonne(int x, int y) {
+	public static boolean quartoColonne(int x, int y, String[][] plateau) {
 
 		int bis = x + 1;
 
@@ -207,7 +207,7 @@ public class Verification {
 	 * @param y
 	 * @return true or false
 	 */
-	public static boolean quartoDiagonale(String coordo) {
+	public static boolean quartoDiagonale(String coordo, String[][] plateau) {
 
 		String[] tab_diago1 = {"00","11","22","33"};
 		String[] tab_diago2 = {"03","12","21","30"};
