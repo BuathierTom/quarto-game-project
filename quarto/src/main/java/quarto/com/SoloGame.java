@@ -1,5 +1,6 @@
 package quarto.com;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,12 +54,6 @@ public class SoloGame {
         // Création du plateau terminal
         String[][] plateau = Plateau.initPlateau();
 
-        // Création du plateau en terminal
-
-        // plateau = Verification.plateauTerminal(4,4);
-        // System.out.println(plateau);
-
-        
 
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
@@ -71,8 +66,7 @@ public class SoloGame {
                         pieces.add(new Piece(estRond, estPetit, estCreux, estBlanc));
             }}
         }}
-        // //On verifie en les printants
-        // System.out.println(pieces);
+
         // Pour toutes les pièces, on créé un bouton avec une signature
         for (Piece piece : pieces) {
             // L'image des pieces dans la ScrollPane
@@ -93,7 +87,6 @@ public class SoloGame {
                 public void handle(ActionEvent event) {
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
                     pieceSignature = ((Button) event.getSource()).getText();
-                    Verification.binaireChange(pieceSignature);
                 }});
             vBox.getChildren().add(button);
             }
@@ -123,48 +116,59 @@ public class SoloGame {
                                 index = i;
                                 break;
                             }
-                        }
-                        if (index != -1) {
+                        } if (index != -1) {
                             buttons_Img.get(index).setVisible(false);
                         }
 
-
+                        // Position du bouton dans la grille 
                         String positionX = Verification.tranfoPositionX(buttonGrille.getLayoutX());
                         String positionY = Verification.tranfoPositionY(buttonGrille.getLayoutY());
 
+                        // On transforme les Strings en int 
                         int pX = Integer.parseInt(positionX);
                         int pY = Integer.parseInt(positionY);
 
+                        // On concatene les strings pour la vérification en Diagonale
                         String coords = positionX + positionY;
 
-                        Boolean i = Plateau.setPiece(pX,pY,pieceSignature,plateau);  
+                        // On transforme la PieceSignature en binaire
+                        String signBinary = Verification.binaireChange(pieceSignature);
 
+                        // On pose la piece
+                        Boolean i = Plateau.setPiece(pX,pY,signBinary,plateau);  
                         // ajout de la piece dans le plateau
-                        plateau[pX][pY] = pieceSignature;
+                        plateau[pX][pY] = signBinary;
 
                         System.out.println("plateau : " + plateau[pX][pY] + "\n");
 
                         
-                        if (Verification.quartoLigne(pX,pY, plateau) == true 
-                            || Verification.quartoColonne(pX,pY, plateau) == true 
-                            || Verification.quartoDiagonale(coords, plateau) == true) {
+                        if (Verification.quartoLigne(pX,pY, plateau) == true ) {
 
                                 System.out.println("Quarto en LIGNE!");
                                 System.out.println(Plateau.affichePlateau(plateau));
+
+                                // On sort de la boucle :
+                                System.exit(0);
                                 
-                        } else {
-                            // Le tour continue et on print le plateau
-                            System.out.println("Continuez le jeu");
+                        } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
+
+                            System.out.println("Quarto en COLONNE!");
                             System.out.println(Plateau.affichePlateau(plateau));
 
+                        } if (Verification.quartoDiagonale(coords, plateau) == true) {
 
-                            
+                            System.out.println("Quarto en DIAGONALE!");
+                            System.out.println(Plateau.affichePlateau(plateau));
+
+                        } if (cases == 16){
+                            System.out.println("Match nul");
                         }
-                            
-                        
-
-
-                        
+                        else {
+                            // Le tour continue et on print le plateau
+                            System.out.println("Continuez le jeu");
+                            System.out.println(Plateau.affichePlateau(plateau)); 
+                            cases++;                           
+                        }
 
                         // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
