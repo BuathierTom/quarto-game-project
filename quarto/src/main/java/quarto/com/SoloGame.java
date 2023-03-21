@@ -98,38 +98,46 @@ public class SoloGame {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 // On créé le bouton
-                Button buttonGrille = new Button();
-                buttonGrille.setPrefSize(100, 100);
+                Button buttonGrille = new Button(""+ j + i);
+                // Un peu de css en java pour les boutons
+                buttonGrille.setStyle("-fx-text-fill: transparent;");
+                buttonGrille.setPrefSize(102, 102);
                 GridPane.setMargin(buttonGrille, new Insets(10, 10, 10, 10));
                 grille.add(buttonGrille);
                 // Quand on clique un bouton de la grille on peut poser la piece sur la grille
                 buttonGrille.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        // // Images des pieces une fois cliquer sur le plateau
+                        // Images des pieces une fois cliquer sur le plateau
+
                         ImagePion.placeImage(pieceSignature, buttonGrille);
+
                         // On supprime le button séléctionner pour pas pouvoir le reposer
-                        
                         int index = -1;
                         for (int i = 0; i < buttons_Img.size(); i++) {
                             if (buttons_Img.get(i).getText().equals(pieceSignature)) {
                                 index = i;
                                 break;
                             }
-                        } if (index != -1) {
+                        } 
+                        
+                        if (index != -1) {
                             buttons_Img.get(index).setVisible(false);
                         }
 
                         // Position du bouton dans la grille 
-                        String positionX = Verification.tranfoPositionX(buttonGrille.getLayoutX());
-                        String positionY = Verification.tranfoPositionY(buttonGrille.getLayoutY());
+                        String coords = buttonGrille.getText();
+                        System.out.println("coords: " + coords);
+
 
                         // On transforme les Strings en int 
-                        int pX = Integer.parseInt(positionX);
-                        int pY = Integer.parseInt(positionY);
+                        int pX = Verification.intAt(coords, 0);
+                        int pY = Verification.intAt(coords, 1);
 
-                        // On concatene les strings pour la vérification en Diagonale
-                        String coords = positionX + positionY;
+                        System.out.println("px: " + pX);
+                        System.out.println("py: " + pY);
+
+
 
                         // On transforme la PieceSignature en binaire
                         String signBinary = Verification.binaireChange(pieceSignature);

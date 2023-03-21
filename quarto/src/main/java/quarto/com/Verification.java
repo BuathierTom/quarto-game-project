@@ -56,58 +56,17 @@ public class Verification {
         return binPiece;
     }
 
-	/**
-	 * Transforme la position X récuperé par les boutons et les tranformes en position utilisable
-	 * @param posX
-	 * @return
-	 */
-	public static String tranfoPositionX(double posX){
+	/**charAt pour les integer avec une conversion string to integer
+     * Permet de recuperer des characteres specifique d'une string en int
+     * @param num
+     * @param index
+     * @return
+     */
+    public static int intAt(String num, int index){
 
-		String positionX = "";
-
-		// On verifie et attribue des valeurs pour la position en X
-		if (posX == 336.8) {
-			positionX += "0";
-		}
-		else if (posX == 457.6) {
-			positionX += "1";
-		}
-		else if (posX == 579.2) {
-			positionX += "2";
-		}
-		else if (posX == 700.0) {
-			positionX += "3";
-		}
-
-		return positionX;
-	}
-
-	/**
-	 * Transforme la position de Y récuperé par les boutons et les tranformes en position utilisable
-	 * @param posY
-	 * @return
-	 */
-	public static String tranfoPositionY(double posY){
-
-		String positionY = "";
-
-		// On verifie et attribue des valeurs pour la position en X
-		if (posY == 118.4) {
-			positionY += "0";
-		}
-		else if (posY == 240.0) {
-			positionY += "1";
-		}
-		else if (posY == 360.8) {
-			positionY += "2";
-		}
-		else if (posY == 481.6) {
-			positionY += "3";
-		}
-
-		return positionY;
-	}
-
+	    int co = Integer.parseInt(num.substring(index, index+1));
+        return co;
+    }
 
     /** Permet de verifier si il y a un quarto ou non
 	 *  elle reçoit en paramêtre 16 chiffres 0 ou 1 et verifie si il y a une

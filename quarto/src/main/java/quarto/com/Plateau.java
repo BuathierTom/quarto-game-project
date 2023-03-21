@@ -34,9 +34,9 @@ public class Plateau {
 		for (int i = 0; i < ligne; i++) {
 			for(int j = 0; j < colonne; j++) {
 				if(j == colonne-1)
-					stringPlateau += plateau[j][i];
+					stringPlateau += plateau[i][j];
 				else
-					stringPlateau += plateau[j][i] + "|";
+					stringPlateau += plateau[i][j] + "|";
 			}
 			if (i != ligne-1) {
 				stringPlateau += "\n";
