@@ -3,8 +3,6 @@ package quarto.com;
 public class Plateau {
     // Class de création du plateau en 2D dans le termine et pouvoir les placer par la suite dedans
 
-    private static int cases = 0;
-
     /**
      * Methode qui permet de renvoyer une fenetre de jeu dans le programme Menu.java. 
      * @param mainWindow Fenetre de jeu
@@ -63,7 +61,6 @@ public class Plateau {
     public static boolean setPiece(int x, int y, String pieceJoueur, String[][] plateau) {
         if (plateau[x][y].equals("null")) {
             plateau[x][y] = " " + pieceJoueur + " ";
-            cases ++;
             return true;
         }
         return false;
