@@ -26,6 +26,7 @@ public class WinWindow {
         /* Icone du jeu : */        
         stageWindow.getIcons().add(new Image("Q_Logo.jpg"));
         stageWindow.setTitle("QUARTO");
+
         stageWindow.setScene(sceneWindow);
         stageWindow.setResizable(false);
         // On return la fenetre

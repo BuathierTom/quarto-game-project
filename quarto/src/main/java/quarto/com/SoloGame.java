@@ -91,6 +91,7 @@ public class SoloGame {
             vBox.getChildren().add(button);
             }
         scroll.setContent(vBox);
+        
 
         System.out.println(Plateau.affichePlateau(plateau));
 
@@ -123,6 +124,8 @@ public class SoloGame {
                         
                         if (index != -1) {
                             buttons_Img.get(index).setVisible(false);
+                            // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
+                            vBox.getChildren().remove(buttons_Img.get(index));
                         }
 
                         // Position du bouton dans la grille 
@@ -149,29 +152,45 @@ public class SoloGame {
 
                         System.out.println("plateau : " + plateau[pX][pY] + "\n");
 
+                        // Variable qui permet de savoir si on continue ou pas
+                        boolean tour = false;
+
                         
                         if (Verification.quartoLigne(pX,pY, plateau) == true ) {
 
                                 System.out.println("Quarto en LIGNE!");
                                 System.out.println(Plateau.affichePlateau(plateau));
 
-                                // On sort de la boucle :
-                                System.exit(0);
-                                
+                                tour = true;
+
+                                Stage stage = WinWindow.winWindow("LIGNES");
+                                stage.show();
+
+
+
                         } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
 
                             System.out.println("Quarto en COLONNE!");
                             System.out.println(Plateau.affichePlateau(plateau));
+
+                            tour = true;
+
 
                         } if (Verification.quartoDiagonale(coords, plateau) == true) {
 
                             System.out.println("Quarto en DIAGONALE!");
                             System.out.println(Plateau.affichePlateau(plateau));
 
+                            tour = true;
+
+
                         } if (cases == 16){
                             System.out.println("Match nul");
+
+                            tour = true;
+
                         }
-                        else {
+                        else if(tour == false) {
                             // Le tour continue et on print le plateau
                             System.out.println("Continuez le jeu");
                             System.out.println(Plateau.affichePlateau(plateau)); 
