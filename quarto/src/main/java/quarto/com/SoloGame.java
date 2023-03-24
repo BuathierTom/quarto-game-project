@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SoloGame {
@@ -206,6 +208,12 @@ public class SoloGame {
                 // On affiche le plateau
             }
         }    
+        // On créé un label de tour : 
+        Label tour = new Label("Tour du joueur 1");
+        tour.setFont(new Font("Arial", 20));
+        tour.setTextFill(Color.WHITE);
+        // On ajoute le label au grid
+        grid.add(tour, 0, 0);
         // On place dans le centralLayout
         centralLayout.setCenter(grid);
         centralLayout.setRight(scroll);
