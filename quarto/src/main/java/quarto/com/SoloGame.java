@@ -49,7 +49,8 @@ public class SoloGame {
         // Les layouts utlisés dans ce programme pour la grille et la selection des pions
         GridPane grid = new GridPane();
         VBox vBox = new VBox();
-        ScrollPane scroll = new ScrollPane();
+        ScrollPane scrollRight = new ScrollPane();
+        ScrollPane scrollLeft = new ScrollPane();
         BorderPane centralLayout = new BorderPane();
         // On centre la grille
         grid.setAlignment(Pos.CENTER);
@@ -59,14 +60,12 @@ public class SoloGame {
         String[][] plateau = Plateau.initPlateau();
 
         Label tour = new Label(" ");
-
+        // On change le label de tour
         tour.setText(playerLabel.labelPlayer(tourJoueur));
-
+        // On verifie le changement de joueur
         if (tourJoueur == 3) {
             tourJoueur = -1;
         }
-
-
 
         // Listes de toutes les pièces du quarto
         List<Piece> pieces = new ArrayList<>();
@@ -99,10 +98,8 @@ public class SoloGame {
                 @Override
                 public void handle(ActionEvent event) {
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
-                    pieceSignature = ((Button) event.getSource()).getText();
-                    // On change le tour du joueur
-                    
-                    // On affiche le tour du joueur
+                    pieceSignature = ((Button) event.getSource()).getText();      
+                    // Label du joueur qui va jouer              
                     tourJoueur++;
                     tour.setText(playerLabel.labelPlayer(tourJoueur));
                     if (tourJoueur == 3) {
@@ -112,11 +109,12 @@ public class SoloGame {
                 }});
             vBox.getChildren().add(button);
             }
-        scroll.setContent(vBox);
-        
-
-
-        System.out.println(Plateau.affichePlateau(plateau));
+        scrollRight.setContent(vBox);
+        // Un peu de css en java pour la selection des pions
+        scrollRight.setFitToWidth(true);
+        scrollRight.setStyle("-fx-background: transparent; -fx-background-color: transparent;"); 
+        scrollRight.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollRight.setPadding(new Insets(10, 10, 10, 10));
 
         // On ajoute les boutons pour la grille
         for (int i = 0; i < 4; i++) {
@@ -133,13 +131,14 @@ public class SoloGame {
                 buttonGrille.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        // Images des pieces une fois cliquer sur le plateau
+                        // Label du joueur qui va jouer
                         tourJoueur++;
                         tour.setText(playerLabel.labelPlayer(tourJoueur));
                         if (tourJoueur == 3) {
                             tourJoueur = -1;
                         }
-
+                        
+                        // Images des pieces une fois cliquer sur le plateau
                         ImagePion.placeImage(pieceSignature, buttonGrille);
 
                         // On supprime le button séléctionner pour pas pouvoir le reposer
@@ -159,17 +158,10 @@ public class SoloGame {
 
                         // Position du bouton dans la grille 
                         String coords = buttonGrille.getText();
-                        System.out.println("coords: " + coords);
-
 
                         // On transforme les Strings en int 
                         int pX = Verification.intAt(coords, 0);
                         int pY = Verification.intAt(coords, 1);
-
-                        System.out.println("px: " + pX);
-                        System.out.println("py: " + pY);
-
-
 
                         // On transforme la PieceSignature en binaire
                         String signBinary = Verification.binaireChange(pieceSignature);
@@ -179,59 +171,41 @@ public class SoloGame {
                         // ajout de la piece dans le plateau
                         plateau[pX][pY] = signBinary;
 
-                        System.out.println("plateau : " + plateau[pX][pY] + "\n");
-
                         // Variable qui permet de savoir si on continue ou pas
-                        boolean noue = false;
+                        boolean conditionWin = false;
 
-                        
                         if (Verification.quartoLigne(pX,pY, plateau) == true ) {
-
-                                System.out.println("Quarto en LIGNE!");
-                                System.out.println(Plateau.affichePlateau(plateau));
-
-                                noue = true;
-
-                                Stage stage = WinWindow.winWindow("LIGNES");
-                                stage.show();
-
-
-
+                            // On change la variable pour pas que le programme continue
+                            conditionWin = true;
+                            // On affiche la fenetre de victoire
+                            Stage stage = WinWindow.winWindow("LIGNES");
+                            stage.show();
                         } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
-
-                            System.out.println("Quarto en COLONNE!");
-                            System.out.println(Plateau.affichePlateau(plateau));
-
-                            noue = true;
-
-
+                            // On change la variable pour pas que le programme continue
+                            conditionWin = true;
+                            // On affiche la fenetre de victoire
+                            Stage stage = WinWindow.winWindow("COLONNES");
+                            stage.show();
                         } if (Verification.quartoDiagonale(coords, plateau) == true) {
-
-                            System.out.println("Quarto en DIAGONALE!");
-                            System.out.println(Plateau.affichePlateau(plateau));
-
-                            noue = true;
-
-
+                            // On change la variable pour pas que le programme continue
+                            conditionWin = true;
+                            // On affiche la fenetre de victoire
+                            Stage stage = WinWindow.winWindow("COLONNES");
+                            stage.show();
                         } if (cases == 16){
-                            System.out.println("Match nul");
-
-                            noue = true;
-
+                            // On change la variable pour pas que le programme continue
+                            conditionWin = true;
+                            // On affiche la fenetre de victoire
+                            Stage stage = WinWindow.winWindow("COLONNES");
+                            stage.show();
                         }
-                        else if(noue == false) {
-                            // Le tour continue et on print le plateau
-                            System.out.println("Continuez le jeu");
-                            System.out.println(Plateau.affichePlateau(plateau)); 
+                        else if(conditionWin == false) {
+                            // On ajoute 1 au nombre de cases
                             cases++;                           
                         }
 
                         // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
-                        // On change le tour du joueur
-
-
-
                     }
 
                 });
@@ -239,15 +213,18 @@ public class SoloGame {
                 // On affiche le plateau
             }
         }    
+
         // On créé un label de tour : 
-        
         tour.setFont(new Font("Arial", 20));
         tour.setTextFill(Color.WHITE);
-        // On ajoute le label au grid
-        grid.add(tour, 0, 0);
+        // On ajoute le label au scroll Left
+        scrollLeft.setContent(tour);
+        scrollLeft.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
+        scrollLeft.setFitToWidth(true);
         // On place dans le centralLayout
         centralLayout.setCenter(grid);
-        centralLayout.setRight(scroll);
+        centralLayout.setRight(scrollRight);
+        centralLayout.setLeft(scrollLeft);
         /* Ajout d'un fond d'écran */
         Image image = new Image("fond.jpg");
         BackgroundSize backgroundSize = new BackgroundSize(1400, 700, true, true, true, false);
@@ -255,7 +232,7 @@ public class SoloGame {
         Background background = new Background(backgroundImage);
         // On ajoute le font
         centralLayout.setBackground(background);
-        // On fait du css en java ! Et oui c'est possible
+        // On fait du css en java ! Et oui c'est possible :) 
         centralLayout.setStyle("-fx-background-image: url('fond.jpg'); " +
         "-fx-background-size: cover; " +
         "-fx-background-repeat: no-repeat; " +
