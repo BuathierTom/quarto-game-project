@@ -27,10 +27,12 @@ public class WinWindow {
 
 
 
-        Image image = new Image("fond.jpg");
+        Image image = new Image("victoire.jpg");
         BackgroundSize backgroundSize = new BackgroundSize(1400, 700, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
+        centralLayout.setBackground(background);
+
         Scene sceneWindow = new Scene(centralLayout, 1400, 700);
         Stage stageWindow = new Stage();
         /* Icone du jeu : */        

@@ -35,6 +35,8 @@ public class SoloGame {
 
     private static int cases = 0;
 
+    private static int tourJoueur = 0;
+
     /**
      * Methode qui permet de renvoyer une fenetre de jeu dans le programme Menu.java. 
      * @param mainWindow Fenetre de jeu
@@ -55,6 +57,15 @@ public class SoloGame {
 
         // Création du plateau terminal
         String[][] plateau = Plateau.initPlateau();
+
+        Label tour = new Label(" ");
+
+        tour.setText(playerLabel.labelPlayer(tourJoueur));
+
+        if (tourJoueur == 3) {
+            tourJoueur = -1;
+        }
+
 
 
         // Listes de toutes les pièces du quarto
@@ -89,17 +100,28 @@ public class SoloGame {
                 public void handle(ActionEvent event) {
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
                     pieceSignature = ((Button) event.getSource()).getText();
+                    // On change le tour du joueur
+                    
+                    // On affiche le tour du joueur
+                    tourJoueur++;
+                    tour.setText(playerLabel.labelPlayer(tourJoueur));
+                    if (tourJoueur == 3) {
+                        tourJoueur = -1;
+                    }
+
                 }});
             vBox.getChildren().add(button);
             }
         scroll.setContent(vBox);
         
 
+
         System.out.println(Plateau.affichePlateau(plateau));
 
         // On ajoute les boutons pour la grille
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
+            
                 // On créé le bouton
                 Button buttonGrille = new Button(""+ j + i);
                 // Un peu de css en java pour les boutons
@@ -112,6 +134,11 @@ public class SoloGame {
                     @Override
                     public void handle(ActionEvent event) {
                         // Images des pieces une fois cliquer sur le plateau
+                        tourJoueur++;
+                        tour.setText(playerLabel.labelPlayer(tourJoueur));
+                        if (tourJoueur == 3) {
+                            tourJoueur = -1;
+                        }
 
                         ImagePion.placeImage(pieceSignature, buttonGrille);
 
@@ -155,7 +182,7 @@ public class SoloGame {
                         System.out.println("plateau : " + plateau[pX][pY] + "\n");
 
                         // Variable qui permet de savoir si on continue ou pas
-                        boolean tour = false;
+                        boolean noue = false;
 
                         
                         if (Verification.quartoLigne(pX,pY, plateau) == true ) {
@@ -163,7 +190,7 @@ public class SoloGame {
                                 System.out.println("Quarto en LIGNE!");
                                 System.out.println(Plateau.affichePlateau(plateau));
 
-                                tour = true;
+                                noue = true;
 
                                 Stage stage = WinWindow.winWindow("LIGNES");
                                 stage.show();
@@ -175,7 +202,7 @@ public class SoloGame {
                             System.out.println("Quarto en COLONNE!");
                             System.out.println(Plateau.affichePlateau(plateau));
 
-                            tour = true;
+                            noue = true;
 
 
                         } if (Verification.quartoDiagonale(coords, plateau) == true) {
@@ -183,16 +210,16 @@ public class SoloGame {
                             System.out.println("Quarto en DIAGONALE!");
                             System.out.println(Plateau.affichePlateau(plateau));
 
-                            tour = true;
+                            noue = true;
 
 
                         } if (cases == 16){
                             System.out.println("Match nul");
 
-                            tour = true;
+                            noue = true;
 
                         }
-                        else if(tour == false) {
+                        else if(noue == false) {
                             // Le tour continue et on print le plateau
                             System.out.println("Continuez le jeu");
                             System.out.println(Plateau.affichePlateau(plateau)); 
@@ -201,6 +228,10 @@ public class SoloGame {
 
                         // On remet la signature de la piece a " " pour pas pouvoir la reposer
                         pieceSignature = " ";
+                        // On change le tour du joueur
+
+
+
                     }
 
                 });
@@ -209,7 +240,7 @@ public class SoloGame {
             }
         }    
         // On créé un label de tour : 
-        Label tour = new Label("Tour du joueur 1");
+        
         tour.setFont(new Font("Arial", 20));
         tour.setTextFill(Color.WHITE);
         // On ajoute le label au grid
