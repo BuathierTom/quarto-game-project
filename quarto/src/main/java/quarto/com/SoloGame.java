@@ -1,6 +1,5 @@
 package quarto.com;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -180,24 +179,36 @@ public class SoloGame {
                             // On affiche la fenetre de victoire
                             Stage stage = WinWindow.winWindow("LIGNES");
                             stage.show();
+                            // Pour fermer la fenetre de jeu
+                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            winClose.close();
                         } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
                             // On change la variable pour pas que le programme continue
                             conditionWin = true;
                             // On affiche la fenetre de victoire
                             Stage stage = WinWindow.winWindow("COLONNES");
                             stage.show();
+                            // Pour fermer la fenetre de jeu
+                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            winClose.close();
                         } if (Verification.quartoDiagonale(coords, plateau) == true) {
                             // On change la variable pour pas que le programme continue
                             conditionWin = true;
                             // On affiche la fenetre de victoire
                             Stage stage = WinWindow.winWindow("COLONNES");
                             stage.show();
+                            // Pour fermer la fenetre de jeu
+                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            winClose.close();
                         } if (cases == 16){
                             // On change la variable pour pas que le programme continue
                             conditionWin = true;
                             // On affiche la fenetre de victoire
-                            Stage stage = WinWindow.winWindow("COLONNES");
+                            Stage stage = WinWindow.winWindow("EGALITE");
                             stage.show();
+                            // Pour fermer la fenetre de jeu
+                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            winClose.close();
                         }
                         else if(conditionWin == false) {
                             // On ajoute 1 au nombre de cases
@@ -234,9 +245,9 @@ public class SoloGame {
         centralLayout.setBackground(background);
         // On fait du css en java ! Et oui c'est possible :) 
         centralLayout.setStyle("-fx-background-image: url('fond.jpg'); " +
-        "-fx-background-size: cover; " +
-        "-fx-background-repeat: no-repeat; " +
-        "-fx-background-position: center;");
+                               "-fx-background-size: cover; " +
+                               "-fx-background-repeat: no-repeat; " +
+                               "-fx-background-position: center;");
         /* Affichage de la scene : */
         Scene sceneWindow = new Scene(centralLayout, 1400, 700);
         Stage stageWindow = new Stage();
