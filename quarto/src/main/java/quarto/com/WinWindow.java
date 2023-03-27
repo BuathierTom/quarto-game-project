@@ -17,18 +17,25 @@ import javafx.stage.Stage;
 public class WinWindow {
 
     public static Stage winWindow(String winner) {
-        // Fenetre javafx avec bonjour ecrit dessus
         BorderPane centralLayout = new BorderPane();
+        // Fenetre de victoire :
+        Label labelVictoire = new Label("QUARTO EN " + winner +"!");
+        labelVictoire.setStyle("-fx-font-size: 50px; -fx-text-fill: #000000;");
+        centralLayout.setTop(labelVictoire);
+        BorderPane.setAlignment(labelVictoire, Pos.CENTER);
+        BorderPane.setMargin(labelVictoire, new Insets(50, 0, 0, 0));
+        
+        // Bouton pour quitter le jeu :
+        Button buttonQuitter = new Button("Quitter");
+        buttonQuitter.setStyle("-fx-font-size: 30px; -fx-background-color: #ffffff; -fx-text-fill: #000000;");
+        centralLayout.setBottom(buttonQuitter);
+        BorderPane.setAlignment(buttonQuitter, Pos.CENTER);
+        BorderPane.setMargin(buttonQuitter, new Insets(0, 0, 50, 0));
+        buttonQuitter.setOnAction(e -> {
+            System.exit(0);
+        });
 
-
-
-        Image image = new Image("victoire.jpg");
-        BackgroundSize backgroundSize = new BackgroundSize(1400, 700, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
-        centralLayout.setBackground(background);
-
-        Scene sceneWindow = new Scene(centralLayout, 1400, 700);
+        Scene sceneWindow = new Scene(centralLayout, 500, 500);
         Stage stageWindow = new Stage();
         /* Icone du jeu : */        
         stageWindow.getIcons().add(new Image("Q_Logo.jpg"));
