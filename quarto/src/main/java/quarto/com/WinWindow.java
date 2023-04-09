@@ -35,7 +35,7 @@ public class WinWindow {
             System.exit(0);
         });
 
-        Scene sceneWindow = new Scene(centralLayout, 500, 500);
+        Scene sceneWindow = new Scene(centralLayout, 700, 600);
         Stage stageWindow = new Stage();
         /* Icone du jeu : */        
         stageWindow.getIcons().add(new Image("Q_Logo.jpg"));

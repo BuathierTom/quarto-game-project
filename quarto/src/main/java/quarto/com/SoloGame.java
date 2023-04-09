@@ -62,6 +62,9 @@ public class SoloGame {
         String[][] plateau = Plateau.initPlateau();
 
         Label tour = new Label(" ");
+
+        Label signLabel = new Label(" ");
+
         // On change le label de tour
         tour.setText(playerLabel.labelPlayer(tourJoueur));
         // On verifie le changement de joueur
@@ -99,6 +102,8 @@ public class SoloGame {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+                    // On change la couleur du bouton selectionné
+                    button.setStyle("-fx-border-color: red; -fx-border-width: 5px;");
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
                     pieceSignature = ((Button) event.getSource()).getText();      
                     // Label du joueur qui va jouer              
@@ -107,6 +112,10 @@ public class SoloGame {
                     if (tourJoueur == 3) {
                         tourJoueur = -1;
                     }
+
+                    signLabel.setText(pieceSignature);
+                    
+
 
                 }});
             vBox.getChildren().add(button);
@@ -236,6 +245,8 @@ public class SoloGame {
 
                             // On remet la signature de la piece a " " pour pas pouvoir la reposer
                             pieceSignature = " ";
+                            // On remet le label de la piece a " "
+                            signLabel.setText(" ");
 
                         }
                     }
@@ -253,6 +264,24 @@ public class SoloGame {
         scrollLeft.setContent(tour);
         scrollLeft.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
         scrollLeft.setFitToWidth(true);
+
+        // --------------------------------------------
+
+        // On créé un label du label de la piece : 
+        signLabel.setFont(new Font("Arial", 20));
+        signLabel.setTextFill(Color.WHITE);
+        // On ajoute le label au scroll Left
+        scrollLeft.setContent(new VBox(tour, signLabel));
+        scrollLeft.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
+        scrollLeft.setFitToWidth(true);
+
+        // --------------------------------------------
+
+        scrollRight.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollRight.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        // --------------------------------------------
+
         // On place dans le centralLayout
         centralLayout.setCenter(grid);
         centralLayout.setRight(scrollRight);
