@@ -11,9 +11,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -26,6 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SoloGame {
@@ -126,97 +129,115 @@ public class SoloGame {
                 buttonGrille.setPrefSize(102, 102);
                 GridPane.setMargin(buttonGrille, new Insets(10, 10, 10, 10));
                 grille.add(buttonGrille);
+
+                // Liste de positions :
+                ArrayList<String> pos = new ArrayList<String>();
+
+
                 // Quand on clique un bouton de la grille on peut poser la piece sur la grille
                 buttonGrille.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        // Label du joueur qui va jouer
-                        tourJoueur++;
-                        tour.setText(playerLabel.labelPlayer(tourJoueur));
-                        if (tourJoueur == 3) {
-                            tourJoueur = -1;
-                        }
-                        
-                        // Images des pieces une fois cliquer sur le plateau
-                        ImagePion.placeImage(pieceSignature, buttonGrille);
+                        // Condition qui verifie si il y a deja une piece sur la case
 
-                        // On supprime le button séléctionner pour pas pouvoir le reposer
-                        int index = -1;
-                        for (int i = 0; i < buttons_Img.size(); i++) {
-                            if (buttons_Img.get(i).getText().equals(pieceSignature)) {
-                                index = i;
-                                break;
+                        // la liste de string pos va etre remplie avec les positions des pieces deja poser
+
+
+                        if (pos.contains(buttonGrille.getText())) {
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText("Erreur");
+                            alert.setContentText("Il y a deja une piece sur cette case");
+                            alert.showAndWait();
+                        } else {
+                            // On ajoute la position de la piece dans la liste pos
+                            pos.add(buttonGrille.getText());
+
+                                // Label du joueur qui va jouer
+                            tourJoueur++;
+                            tour.setText(playerLabel.labelPlayer(tourJoueur));
+                            if (tourJoueur == 3) {
+                                tourJoueur = -1;
                             }
-                        } 
-                        
-                        if (index != -1) {
-                            buttons_Img.get(index).setVisible(false);
-                            // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
-                            vBox.getChildren().remove(buttons_Img.get(index));
+                            
+                            // Images des pieces une fois cliquer sur le plateau
+                            ImagePion.placeImage(pieceSignature, buttonGrille);
+
+                            // On supprime le button séléctionner pour pas pouvoir le reposer
+                            int index = -1;
+                            for (int i = 0; i < buttons_Img.size(); i++) {
+                                if (buttons_Img.get(i).getText().equals(pieceSignature)) {
+                                    index = i;
+                                    break;
+                                }
+                            } 
+                            
+                            if (index != -1) {
+                                buttons_Img.get(index).setVisible(false);
+                                // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
+                                vBox.getChildren().remove(buttons_Img.get(index));
+                            }
+
+                            // Position du bouton dans la grille 
+                            String coords = buttonGrille.getText();
+
+                            // On transforme les Strings en int 
+                            int pX = Verification.intAt(coords, 0);
+                            int pY = Verification.intAt(coords, 1);
+
+                            // On transforme la PieceSignature en binaire
+                            String signBinary = Verification.binaireChange(pieceSignature);
+
+                            // On pose la piece
+                            Boolean i = Plateau.setPiece(pX,pY,signBinary,plateau);  
+                            // ajout de la piece dans le plateau
+                            plateau[pX][pY] = signBinary;
+
+                            // Variable qui permet de savoir si on continue ou pas
+                            boolean conditionWin = false;
+
+                            if (Verification.quartoLigne(pX,pY, plateau) == true ) {
+                                // On change la variable pour pas que le programme continue
+                                conditionWin = true;
+                                // On affiche la fenetre de victoire
+                                Stage stage = WinWindow.winWindow("LIGNES");
+                                stage.show();
+                                // Pour fermer la fenetre de jeu
+                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
+                                // On change la variable pour pas que le programme continue
+                                conditionWin = true;
+                                // On affiche la fenetre de victoire
+                                Stage stage = WinWindow.winWindow("COLONNES");
+                                stage.show();
+                                // Pour fermer la fenetre de jeu
+                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            } if (Verification.quartoDiagonale(coords, plateau) == true) {
+                                // On change la variable pour pas que le programme continue
+                                conditionWin = true;
+                                // On affiche la fenetre de victoire
+                                Stage stage = WinWindow.winWindow("DIAGONALE");
+                                stage.show();
+                                // Pour fermer la fenetre de jeu
+                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            } if (cases == 16){
+                                // On change la variable pour pas que le programme continue
+                                conditionWin = true;
+                                // On affiche la fenetre de victoire
+                                Stage stage = WinWindow.winWindow("EGALITE");
+                                stage.show();
+                                // Pour fermer la fenetre de jeu
+                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
+                            }
+                            else if(conditionWin == false) {
+                                // On ajoute 1 au nombre de cases
+                                cases++;                           
+                            }
+
+                            // On remet la signature de la piece a " " pour pas pouvoir la reposer
+                            pieceSignature = " ";
+
                         }
-
-                        // Position du bouton dans la grille 
-                        String coords = buttonGrille.getText();
-
-                        // On transforme les Strings en int 
-                        int pX = Verification.intAt(coords, 0);
-                        int pY = Verification.intAt(coords, 1);
-
-                        // On transforme la PieceSignature en binaire
-                        String signBinary = Verification.binaireChange(pieceSignature);
-
-                        // On pose la piece
-                        Boolean i = Plateau.setPiece(pX,pY,signBinary,plateau);  
-                        // ajout de la piece dans le plateau
-                        plateau[pX][pY] = signBinary;
-
-                        // Variable qui permet de savoir si on continue ou pas
-                        boolean conditionWin = false;
-
-                        if (Verification.quartoLigne(pX,pY, plateau) == true ) {
-                            // On change la variable pour pas que le programme continue
-                            conditionWin = true;
-                            // On affiche la fenetre de victoire
-                            Stage stage = WinWindow.winWindow("LIGNES");
-                            stage.show();
-                            // Pour fermer la fenetre de jeu
-                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            winClose.close();
-                        } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
-                            // On change la variable pour pas que le programme continue
-                            conditionWin = true;
-                            // On affiche la fenetre de victoire
-                            Stage stage = WinWindow.winWindow("COLONNES");
-                            stage.show();
-                            // Pour fermer la fenetre de jeu
-                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            winClose.close();
-                        } if (Verification.quartoDiagonale(coords, plateau) == true) {
-                            // On change la variable pour pas que le programme continue
-                            conditionWin = true;
-                            // On affiche la fenetre de victoire
-                            Stage stage = WinWindow.winWindow("COLONNES");
-                            stage.show();
-                            // Pour fermer la fenetre de jeu
-                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            winClose.close();
-                        } if (cases == 16){
-                            // On change la variable pour pas que le programme continue
-                            conditionWin = true;
-                            // On affiche la fenetre de victoire
-                            Stage stage = WinWindow.winWindow("EGALITE");
-                            stage.show();
-                            // Pour fermer la fenetre de jeu
-                            Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            winClose.close();
-                        }
-                        else if(conditionWin == false) {
-                            // On ajoute 1 au nombre de cases
-                            cases++;                           
-                        }
-
-                        // On remet la signature de la piece a " " pour pas pouvoir la reposer
-                        pieceSignature = " ";
                     }
 
                 });

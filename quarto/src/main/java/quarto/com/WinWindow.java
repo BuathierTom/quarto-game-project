@@ -46,7 +46,6 @@ public class WinWindow {
         // On return la fenetre
         return stageWindow;
         
-
     }
     
 }
