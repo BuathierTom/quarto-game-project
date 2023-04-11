@@ -65,7 +65,7 @@ public class IAGame {
         Label signLabel = new Label(" ");
 
         // On change le label de tour
-        tour.setText(playerLabel.labelPlayer(tourJoueur));
+        tour.setText(playerLabel.labelIA(tourJoueur));
         // On verifie le changement de joueur
         if (tourJoueur == 3) {
             tourJoueur = -1;
@@ -109,7 +109,7 @@ public class IAGame {
                              
                     // Label du joueur qui va jouer              
                     tourJoueur++;
-                    tour.setText(playerLabel.labelPlayer(tourJoueur));
+                    tour.setText(playerLabel.labelIA(tourJoueur));
                     if (tourJoueur == 3) {
                         tourJoueur = -1;
                     }
@@ -166,7 +166,7 @@ public class IAGame {
 
                             // Label du joueur qui va jouer
                             tourJoueur++;
-                            tour.setText(playerLabel.labelPlayer(tourJoueur));
+                            tour.setText(playerLabel.labelIA(tourJoueur));
                             if (tourJoueur == 3) {
                                 tourJoueur = -1;
                             }
