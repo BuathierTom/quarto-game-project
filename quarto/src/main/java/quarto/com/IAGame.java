@@ -30,7 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class SoloGame {
+public class IAGame {
     // Définition des variables utile
     private static String pieceSignature = " ";
 

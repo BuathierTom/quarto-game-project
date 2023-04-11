@@ -20,17 +20,28 @@ public class Menu extends Application {
         /* Création des layouts pour les boutons */
         VBox mainLayout = new VBox();
         /* Création des boutons */
-        Button play = new Button("PLAY");
+        Button play_solo = new Button("PLAY SOLO");
+        Button play_IA = new Button("PLAY IA");
         Button regles = new Button("REGLES");
         Button exit = new Button("EXIT");
         /* Creation de la fenetre du jeu */
-        play.setOnAction(new EventHandler<ActionEvent>() {
+        play_solo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 Stage playWindows;
                 playWindows = SoloGame.quartoWindow(mainWindow);
                 playWindows.show();
-                Stage stage = (Stage) play.getScene().getWindow();
+                Stage stage = (Stage) play_solo.getScene().getWindow();
+                stage.close();
+        }});
+
+        play_IA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                Stage playWindows;
+                playWindows = IAGame.quartoWindow(mainWindow);
+                playWindows.show();
+                Stage stage = (Stage) play_IA.getScene().getWindow();
                 stage.close();
         }});
 
@@ -53,7 +64,7 @@ public class Menu extends Application {
         /* Insertion du layout StackPane dans le Vbox :) */
         mainLayout.setSpacing(10);
         /* Insertion des boutons */
-        mainLayout.getChildren().addAll(play, regles, exit);
+        mainLayout.getChildren().addAll(play_solo, play_IA, regles, exit);
         mainLayout.setAlignment(Pos.CENTER);
         /* Icone du jeu : */        
         mainWindow.getIcons().add(new Image("Q_Logo.jpg"));
