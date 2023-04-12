@@ -47,6 +47,20 @@ public class IAGame {
         // Listes de buttons 
         List<Button> buttons_Img = new ArrayList<>();
         List<Button> grille = new ArrayList<>();
+        
+        // Liste de positions :
+        ArrayList<String> posPions = new ArrayList<String>();
+
+        // Liste de positions de tout les boutons de la grille :
+        ArrayList<String> posGrille = new ArrayList<String>();
+        // On ajoute toutes les positions de la grille : "00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                posGrille.add(i + "" + j);
+            }
+        }
+        
         // Les layouts utlisés dans ce programme pour la grille et la selection des pions
         GridPane grid = new GridPane();
         VBox vBox = new VBox();
@@ -66,6 +80,7 @@ public class IAGame {
 
         // On change le label de tour
         tour.setText(playerLabel.labelIA(tourJoueur));
+
         // On verifie le changement de joueur
         if (tourJoueur == 3) {
             tourJoueur = -1;
@@ -109,11 +124,98 @@ public class IAGame {
                              
                     // Label du joueur qui va jouer              
                     tourJoueur++;
+                    if (tourJoueur == 1) {
+                        // On place la piece avec son image grace a la piece signature sur le bouton qui a le texte 00
+                        for (Button button : buttons_Img) {
+                            if (button.getText().equals(pieceSignature)) {
+
+                                String pos = posGrille.get((int) (Math.random() * posGrille.size()));
+
+                                System.out.println("EVAN : "+posGrille.size());
+
+
+                                // On ajoute l'image dans la premiere case de la grille
+                                Image img = new Image(pieceSignature + ".png");
+                                ImageView imgView = new ImageView(img);
+                                imgView.setFitWidth(75);
+                                imgView.setFitHeight(75);
+
+                                int index = posGrille.indexOf(pos);
+
+                                // On ajoute l'image dans la premiere case de la grille
+                                grille.get(index).setGraphic(imgView);
+
+                                // On supprime le button séléctionner pour pas pouvoir le reposer
+                                int indexButtonIMG_tour1 = -1;
+                                for (int z = 0; z < buttons_Img.size(); z++) {
+                                    if (buttons_Img.get(z).getText().equals(pieceSignature)) {
+                                        indexButtonIMG_tour1 = z;
+                                        break;
+                                    }
+                                } 
+                                
+                                if (indexButtonIMG_tour1 != -1) {
+                                    buttons_Img.get(indexButtonIMG_tour1).setVisible(false);
+                                    // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
+                                    vBox.getChildren().remove(buttons_Img.get(indexButtonIMG_tour1));
+                                    // On enleve le bouton de la liste pieces
+                                    pieces.remove(indexButtonIMG_tour1);
+                                }
+
+                                int posX = Verification.intAt(pos, 0);
+                                int posY = Verification.intAt(pos, 1);
+
+                                // On transforme la PieceSignature en binaire
+                                String signBinary = Verification.binaireChange(pieceSignature);
+
+                                // On pose la piece sur le tableau console
+                                Boolean i = Plateau.setPiece(posX,posY,signBinary,plateau); 
+
+                                // On ajoute la piece sur la grille
+                                plateau[posX][posY] = signBinary;
+                                // On ajoute la position du pion sur la grille
+                                posPions.add(pos);
+                                // On enleve la position de la grille
+                                posGrille.remove(pos);
+                                // On enleve la piece de la selection
+                                pieceSignature = " ";
+                                tourJoueur++;
+
+                            }
+                        } 
+                    }
+                    if (tourJoueur == 2) {
+                        // On prend au hasard une piece dans la liste de pieces
+                        String pieceRandom = pieces.get((int) (Math.random() * pieces.size())).toString();
+                        System.out.println("FDP : "+pieces.size());
+                        System.out.println("C'EST MA PIECE FDP : "+pieceRandom);
+
+
+                        pieceSignature = pieceRandom;
+                        
+                        int indexButtonIMG_tour2 = -1;
+                        for (int o = 0; o < buttons_Img.size(); o++) {
+                            if (buttons_Img.get(o).getText().equals(pieceSignature)) {
+                                indexButtonIMG_tour2 = o;
+                                break;
+                            }
+                        } 
+                        
+                        if (indexButtonIMG_tour2 != -1) {
+                            buttons_Img.get(indexButtonIMG_tour2).setVisible(false);
+                            // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
+                            vBox.getChildren().remove(buttons_Img.get(indexButtonIMG_tour2));
+                            // On enleve le bouton de la liste pieces
+                            pieces.remove(indexButtonIMG_tour2);
+                        }
+
+                        tourJoueur++;
+                    }
                     tour.setText(playerLabel.labelIA(tourJoueur));
                     if (tourJoueur == 3) {
                         tourJoueur = -1;
                     }
-                    signLabel.setText("Pièce sélectionné : " + pieceSignature);
+                    signLabel.setText(pieceSignature);
     
                 }});
             vBox.getChildren().add(button);
@@ -124,6 +226,7 @@ public class IAGame {
         scrollRight.setStyle("-fx-background: transparent; -fx-background-color: transparent;"); 
         scrollRight.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollRight.setPadding(new Insets(10, 10, 10, 10));
+
 
         // On ajoute les boutons pour la grille
         for (int i = 0; i < 4; i++) {
@@ -137,10 +240,6 @@ public class IAGame {
                 GridPane.setMargin(buttonGrille, new Insets(10, 10, 10, 10));
                 grille.add(buttonGrille);
 
-                // Liste de positions :
-                ArrayList<String> pos = new ArrayList<String>();
-
-
                 // Quand on clique un bouton de la grille on peut poser la piece sur la grille
                 buttonGrille.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -153,7 +252,7 @@ public class IAGame {
                             alert.setHeaderText("Erreur");
                             alert.setContentText("Vous n'avez pas selectionné de piece");
                             alert.showAndWait();
-                        } else if (pos.contains(buttonGrille.getText())) {
+                        } else if (posPions.contains(buttonGrille.getText())) {
                             // Si il y a deja une piece sur la case on affiche une erreur
                             Alert alert = new Alert(AlertType.INFORMATION);
                             alert.setTitle("Erreur");
@@ -162,7 +261,8 @@ public class IAGame {
                             alert.showAndWait();
                         } else {
                             // On ajoute la position de la piece dans la liste pos
-                            pos.add(buttonGrille.getText());
+                            posPions.add(buttonGrille.getText());
+                            posGrille.remove(buttonGrille.getText());
 
                             // Label du joueur qui va jouer
                             tourJoueur++;

@@ -102,7 +102,6 @@ public class SoloGame {
                 @Override
                 public void handle(ActionEvent event) {
                     pieceSignature = ((Button) event.getSource()).getText(); 
-                    
                     // On change la couleur du bouton selectionné
                     button.setStyle("-fx-border-color: red; -fx-border-width: 5px;");
                     // on récupere le texte de la pieces (Exple: "Rond_Court_Creux_Blanc")
