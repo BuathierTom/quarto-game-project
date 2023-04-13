@@ -1,5 +1,6 @@
 package quarto.com;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -245,6 +246,9 @@ public class SoloGame {
         scrollLeft.setContent(tour);
         scrollLeft.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
         scrollLeft.setFitToWidth(true);
+
+        
+
 
         // --------------------------------------------
 
