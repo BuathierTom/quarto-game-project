@@ -1,13 +1,13 @@
 # Doc Dev Quarto
 # Jeu console :
+
 ## Main.java :
 
-
-- __Main.java__ permet le lancement du jeu ainsi que l'affichage de la partie.
+- >__Main.java__ permet le lancement du jeu ainsi que l'affichage de la partie.
 
 ## Piece.java :
 
-- __Piece.java__ est le fichier de gestion des pieces de notre jeu.
+- >__Piece.java__ est le fichier de gestion des pieces de notre jeu.
 
 La classe Piece s'occupe de gestion des pieces du jeu tel qu'afficher les
 pieces restantes d'une partie remettre les pieces en jeu ou encore 
@@ -47,12 +47,12 @@ __affichage()__ est une méthode qui gère la récupération de toutes les entr�
 
     toutes ces options seront aussi gérés  
 
-__help()__ est une méthode d'affichage de toutes les options disponibles.  
+>__help()__ est une méthode d'affichage de toutes les options disponibles.  
 
-__intAt()__ pour les integrer avec une conversion string to integer. Permet de recuperer des characteres specifique d'une string en int (ici elle me permet d'entrer des coordonnees en une fois mais de les distinguer en plusieurs variables).  
+>__intAt()__ pour les integrer avec une conversion string to integer. Permet de recuperer des characteres specifique d'une string en int (ici elle me permet d'entrer des coordonnees en une fois mais de les distinguer en plusieurs variables).  
 
 
-__nettoyage()__ est une méthode qui reinitialise le tableau des pieces, le plateau et les tours des joueurs.
+>__nettoyage()__ est une méthode qui reinitialise le tableau des pieces, le plateau et les tours des joueurs.
 
 ## Plateau.java :
 
@@ -93,30 +93,53 @@ __nettoyage()__ est une méthode qui reinitialise le tableau des pieces, le plat
 
 ## Main.java :
 
-__Main.java__ permet le lancement du jeu ainsi que l'affichage de la partie.  
+>__Main.java__ permet le lancement du jeu ainsi que l'affichage de la partie.  
 
 ## Menu.java :
 
-__Menu.java__ permet l'affichage de notre menu et de donner l'accès différente fonctionnalités.  
+>__Menu.java__ permet l'affichage de notre menu et de donner l'accès différente fonctionnalités.  
 
 ## Piece.java :
 
-__Piece.java__ permet l'identification de nos pièces en fonction de leur carctèristiques.
+>__Piece.java__ permet l'identification de nos pièces en fonction de leur carctèristiques.
 
 ## Plateau.java :
 
-__Plateau.java__ nous renvoie une fenetre avec le jeu au __Menu.java__. Le menu lui gère tout.
+>__Plateau.java__ nous sert à afficher la partie dans la console.
 
 ## Verification.java :
 
-__Verification.java__ gére de façon booléene les conditions de victoire en colonne, en diagonnale et en ligne.
+>__Verification.java__ gére de façon booléene les conditions de victoire en colonne, en diagonnale et en ligne.
 
 ## Rules.java :
 
-__Rules.java__ stock les régles et les places dans une liste. Ensuite les régles sont envoyées au __Menu.java__ qui les récupéres et les affiches.  
+>__Rules.java__ stock les régles et les places dans une liste. Ensuite les régles sont envoyées au __Menu.java__ qui les récupéres et les affiches.  
+
+## IAGame.java :
+
+>__IAGame.java__ reprend le code d'origine du quarto tout en y ajoutant le placement aléatoire des pieces par l'IA lorque le joueur 2 doit jouer. Dans vos partie l'IA va donc représenter le joueur 2.  
+
+
+## ImagePion.java :
+
+>__ImagePion.Java__ va nous permettre de récupérer les images des pieces du Quarto pour les utiliser dans les boutons.
+
+## PlayerLabel.java :
+
+>__PlayerLabel.java__ nous sert juste à alterner les tours entre joueurs.
+
+## SoloGame.java :
+
+>__SoloGame.java__ nous renvoie une fenetre avec le jeu au __Menu.java__. Le menu lui gère tout.
+
+## WinWindow.java :
+
+>__WinWindow.java__ affiche la fenetre en cas de victoire d'un joueur.
+
+
 #
 ## A savoir :
 * Le jeu console est fonctionne parfaitement, toutes les options disponibles vous ont été spécifié dans la rublique 'help' du jeu.
-* Le jeu interface n'a pas plus étre aboutit, seul les vérifications de victoire n'ont pas put étre réalisé. 
+* Le jeu en interface a cette fois ci abouti et vous pouvez profiter d'une experience de jeu complète. 
 #
 (_les explications de l'interface graphique sont moins précise que le jeu en terminale puis que l'interface est plus intuitive que le jeu console, mais aussi suite a un léger manque de temps._)
