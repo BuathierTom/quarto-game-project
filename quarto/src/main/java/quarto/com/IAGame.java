@@ -130,19 +130,17 @@ public class IAGame {
                             if (button.getText().equals(pieceSignature)) {
 
                                 String pos = posGrille.get((int) (Math.random() * posGrille.size()));
+                                System.out.println("POS : " + pos);
 
-                                System.out.println("EVAN : "+posGrille.size());
 
-
-                                // On ajoute l'image dans la premiere case de la grille
                                 Image img = new Image(pieceSignature + ".png");
                                 ImageView imgView = new ImageView(img);
                                 imgView.setFitWidth(75);
                                 imgView.setFitHeight(75);
 
                                 int index = posGrille.indexOf(pos);
+                                System.out.println("INDEX : "+posGrille.indexOf(pos));
 
-                                // On ajoute l'image dans la premiere case de la grille
                                 grille.get(index).setGraphic(imgView);
 
                                 // On supprime le button séléctionner pour pas pouvoir le reposer
@@ -165,14 +163,20 @@ public class IAGame {
                                 int posX = Verification.intAt(pos, 0);
                                 int posY = Verification.intAt(pos, 1);
 
+                                System.out.println("POS X : " + posX);
+                                System.out.println("POS Y : " + posY);
+
                                 // On transforme la PieceSignature en binaire
                                 String signBinary = Verification.binaireChange(pieceSignature);
 
                                 // On pose la piece sur le tableau console
-                                Boolean i = Plateau.setPiece(posX,posY,signBinary,plateau); 
+                                Boolean i = Plateau.setPiece(posX, posY, signBinary,plateau); 
 
                                 // On ajoute la piece sur la grille
                                 plateau[posX][posY] = signBinary;
+
+                                // on affiche le plateau
+                                System.out.println(Plateau.affichePlateau(plateau));
                                 // On ajoute la position du pion sur la grille
                                 posPions.add(pos);
                                 // On enleve la position de la grille
@@ -187,8 +191,7 @@ public class IAGame {
                     if (tourJoueur == 2) {
                         // On prend au hasard une piece dans la liste de pieces
                         String pieceRandom = pieces.get((int) (Math.random() * pieces.size())).toString();
-                        System.out.println("FDP : "+pieces.size());
-                        System.out.println("C'EST MA PIECE FDP : "+pieceRandom);
+                        System.out.println("C'EST MA PIECE FDP : "+ pieceRandom);
 
 
                         pieceSignature = pieceRandom;
