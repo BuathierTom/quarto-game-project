@@ -146,8 +146,6 @@ public class IAGame {
                                     }
                                 }
                                 
-                            
-
                                 // On supprime le button séléctionner pour pas pouvoir le reposer
                                 int indexButtonIMG_tour1 = -1;
                                 for (int z = 0; z < buttons_Img.size(); z++) {
@@ -176,10 +174,6 @@ public class IAGame {
 
                                 // On ajoute la piece sur la grille
                                 plateau[posX][posY] = signBinary;
-
-                                // on affiche le plateau
-                                
-                                System.out.println(Plateau.affichePlateau(plateau));
 
                                 // On supprime la position de la grille
                                 posGrille.remove(pos);
