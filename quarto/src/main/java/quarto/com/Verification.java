@@ -2,6 +2,9 @@ package quarto.com;
 
 import java.util.Arrays;
 
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
 public class Verification {
 
 	// Variables de plateau pour la vérification des cases

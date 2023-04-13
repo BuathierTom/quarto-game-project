@@ -1,7 +1,7 @@
 package quarto.com;
 
 
-public class playerLabel {
+public class PlayerLabel {
 
     /**
      * Methode qui permet de renvoyer le label qui permet de savoir qui doit jouer

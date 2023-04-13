@@ -57,7 +57,7 @@ public class IAGame {
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                posGrille.add(i + "" + j);
+                posGrille.add(j + "" + i);
             }
         }
         
@@ -79,7 +79,7 @@ public class IAGame {
         Label signLabel = new Label(" ");
 
         // On change le label de tour
-        tour.setText(playerLabel.labelIA(tourJoueur));
+        tour.setText(PlayerLabel.labelIA(tourJoueur));
 
         // On verifie le changement de joueur
         if (tourJoueur == 3) {
@@ -130,18 +130,23 @@ public class IAGame {
                             if (button.getText().equals(pieceSignature)) {
 
                                 String pos = posGrille.get((int) (Math.random() * posGrille.size()));
-                                System.out.println("POS : " + pos);
-
 
                                 Image img = new Image(pieceSignature + ".png");
                                 ImageView imgView = new ImageView(img);
                                 imgView.setFitWidth(75);
                                 imgView.setFitHeight(75);
 
-                                int index = posGrille.indexOf(pos);
-                                System.out.println("INDEX : "+posGrille.indexOf(pos));
-
-                                grille.get(index).setGraphic(imgView);
+                                
+                                // on ajoute l'image a la grille avec le texte cacher dans le bouton et pas l'index des boutons :
+                                for (Button buttonGrille : grille) {
+                                    if (buttonGrille.getText().equals(pos)) {
+                                        buttonGrille.setGraphic(imgView);
+                                        buttonGrille.setText(pieceSignature);
+                                        break;
+                                    }
+                                }
+                                
+                            
 
                                 // On supprime le button séléctionner pour pas pouvoir le reposer
                                 int indexButtonIMG_tour1 = -1;
@@ -163,9 +168,6 @@ public class IAGame {
                                 int posX = Verification.intAt(pos, 0);
                                 int posY = Verification.intAt(pos, 1);
 
-                                System.out.println("POS X : " + posX);
-                                System.out.println("POS Y : " + posY);
-
                                 // On transforme la PieceSignature en binaire
                                 String signBinary = Verification.binaireChange(pieceSignature);
 
@@ -176,7 +178,33 @@ public class IAGame {
                                 plateau[posX][posY] = signBinary;
 
                                 // on affiche le plateau
+                                
                                 System.out.println(Plateau.affichePlateau(plateau));
+
+                                // On supprime la position de la grille
+                                posGrille.remove(pos);
+
+                                // Variable qui permet de savoir si on continue ou pas
+                                boolean conditionWinIA = false;
+
+                                // Liste utile que dans l'IA 
+                                String[] listIA = {"IA"};
+
+                                if (Verification.quartoLigne(posX,posY, plateau) == true || 
+                                    Verification.quartoColonne(posX,posY, plateau) == true || 
+                                    Verification.quartoDiagonale(pos, plateau) == true) {
+                                    // On change la variable pour pas que le programme continue
+                                    conditionWinIA = true;
+                                    // On affiche la fenetre de victoire
+                                    Stage stage = WinWindow.winWindow(cases, tourJoueur, listIA);
+                                    stage.show();
+                                    // Pour fermer la fenetre de jeu
+                                    Stage winClose = (Stage) button.getScene().getWindow();
+                                } else if(conditionWinIA == false) {
+                                    // On ajoute 1 au nombre de cases
+                                    cases++;                           
+                                }
+
                                 // On ajoute la position du pion sur la grille
                                 posPions.add(pos);
                                 // On enleve la position de la grille
@@ -191,8 +219,6 @@ public class IAGame {
                     if (tourJoueur == 2) {
                         // On prend au hasard une piece dans la liste de pieces
                         String pieceRandom = pieces.get((int) (Math.random() * pieces.size())).toString();
-                        System.out.println("C'EST MA PIECE FDP : "+ pieceRandom);
-
 
                         pieceSignature = pieceRandom;
                         
@@ -209,12 +235,13 @@ public class IAGame {
                             // Les bouton de la grilles remonte dans la ScrollPane lorsqu'on enlève un bouton
                             vBox.getChildren().remove(buttons_Img.get(indexButtonIMG_tour2));
                             // On enleve le bouton de la liste pieces
-                            pieces.remove(indexButtonIMG_tour2);
                         }
+
+                        pieces.remove(pieceRandom);
 
                         tourJoueur++;
                     }
-                    tour.setText(playerLabel.labelIA(tourJoueur));
+                    tour.setText(PlayerLabel.labelIA(tourJoueur));
                     if (tourJoueur == 3) {
                         tourJoueur = -1;
                     }
@@ -269,7 +296,7 @@ public class IAGame {
 
                             // Label du joueur qui va jouer
                             tourJoueur++;
-                            tour.setText(playerLabel.labelIA(tourJoueur));
+                            tour.setText(PlayerLabel.labelIA(tourJoueur));
                             if (tourJoueur == 3) {
                                 tourJoueur = -1;
                             }
@@ -310,40 +337,20 @@ public class IAGame {
                             // Variable qui permet de savoir si on continue ou pas
                             boolean conditionWin = false;
 
-                            if (Verification.quartoLigne(pX,pY, plateau) == true ) {
+                            // Liste utile que dans l'IA 
+                            String[] listIA = {"IA"};
+
+                            if (Verification.quartoLigne(pX,pY, plateau) == true || 
+                                Verification.quartoColonne(pX,pY, plateau) == true || 
+                                Verification.quartoDiagonale(coords, plateau) == true) {
                                 // On change la variable pour pas que le programme continue
                                 conditionWin = true;
                                 // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("LIGNES");
+                                Stage stage = WinWindow.winWindow(cases, tourJoueur, listIA);
                                 stage.show();
                                 // Pour fermer la fenetre de jeu
                                 Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("COLONNES");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (Verification.quartoDiagonale(coords, plateau) == true) {
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("DIAGONALE");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (cases == 16){
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("EGALITE");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            }
-                            else if(conditionWin == false) {
+                            } else if(conditionWin == false) {
                                 // On ajoute 1 au nombre de cases
                                 cases++;                           
                             }

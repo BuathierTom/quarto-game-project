@@ -65,7 +65,7 @@ public class SoloGame {
         Label signLabel = new Label(" ");
 
         // On change le label de tour
-        tour.setText(playerLabel.labelPlayer(tourJoueur));
+        tour.setText(PlayerLabel.labelPlayer(tourJoueur));
         // On verifie le changement de joueur
         if (tourJoueur == 3) {
             tourJoueur = -1;
@@ -108,7 +108,7 @@ public class SoloGame {
                              
                     // Label du joueur qui va jouer              
                     tourJoueur++;
-                    tour.setText(playerLabel.labelPlayer(tourJoueur));
+                    tour.setText(PlayerLabel.labelPlayer(tourJoueur));
                     if (tourJoueur == 3) {
                         tourJoueur = -1;
                     }
@@ -162,13 +162,6 @@ public class SoloGame {
                         } else {
                             // On ajoute la position de la piece dans la liste pos
                             pos.add(buttonGrille.getText());
-
-                            // Label du joueur qui va jouer
-                            tourJoueur++;
-                            tour.setText(playerLabel.labelPlayer(tourJoueur));
-                            if (tourJoueur == 3) {
-                                tourJoueur = -1;
-                            }
                             
                             // Images des pieces une fois cliquer sur le plateau
                             ImagePion.placeImage(pieceSignature, buttonGrille);
@@ -206,40 +199,20 @@ public class SoloGame {
                             // Variable qui permet de savoir si on continue ou pas
                             boolean conditionWin = false;
 
-                            if (Verification.quartoLigne(pX,pY, plateau) == true ) {
+                            // Liste utile que dans l'IA 
+                            String[] listIA = {};
+
+                            if (Verification.quartoLigne(pX,pY, plateau) == true || 
+                                Verification.quartoColonne(pX,pY, plateau) == true || 
+                                Verification.quartoDiagonale(coords, plateau) == true) {
                                 // On change la variable pour pas que le programme continue
                                 conditionWin = true;
                                 // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("LIGNES");
+                                Stage stage = WinWindow.winWindow(cases, tourJoueur, listIA);
                                 stage.show();
                                 // Pour fermer la fenetre de jeu
                                 Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (Verification.quartoColonne(pX,pY, plateau) == true ){ 
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("COLONNES");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (Verification.quartoDiagonale(coords, plateau) == true) {
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("DIAGONALE");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            } if (cases == 16){
-                                // On change la variable pour pas que le programme continue
-                                conditionWin = true;
-                                // On affiche la fenetre de victoire
-                                Stage stage = WinWindow.winWindow("EGALITE");
-                                stage.show();
-                                // Pour fermer la fenetre de jeu
-                                Stage winClose = (Stage) buttonGrille.getScene().getWindow();
-                            }
-                            else if(conditionWin == false) {
+                            } else if(conditionWin == false) {
                                 // On ajoute 1 au nombre de cases
                                 cases++;                           
                             }
@@ -248,6 +221,13 @@ public class SoloGame {
                             pieceSignature = " ";
                             // On remet le label de la piece a " "
                             signLabel.setText(" ");
+
+                            // Label du joueur qui va jouer
+                            tourJoueur++;
+                            tour.setText(PlayerLabel.labelPlayer(tourJoueur));
+                            if (tourJoueur == 3) {
+                                tourJoueur = -1;
+                            }
 
                         }
                     }
