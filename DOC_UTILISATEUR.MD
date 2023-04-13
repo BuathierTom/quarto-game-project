@@ -73,14 +73,19 @@ Au démarrage du jeu plusieurs options sont disponible comme tout d'abord l'opti
 ### Guide de démarrage rapide :
 
 -> le lancement se fait dans le fichier main  
-Au lancement du jeu un petite fenetre va s'ouvrir et 3 options s'offre à vous :
+Au lancement du jeu un petite fenetre va s'ouvrir et 4 options s'offre à vous :
 
-* Jouer  
-`Lancement de la partie `
+* Play Solo  
+`Le lancement d'une partie en local `  
+* Play IA  
+`Le lancement d'une partie contre l'IA`
 * Règles  
 `Affichage des règles `
 * Exit  
 `Ferme l'application `
+
+
+> Après avoir TRES bien lu les règles du jeu (lire beaucoup parce que c'est dur), vous pourez lancer une partie en 1v1 en local ou bien en 1v1 contre notre IA super forte au jeu.
 
 ### Guide de gestion du jeu :
 
