@@ -31,7 +31,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class IAGame {
-    // Définition des variables utile
+    // Définition des variables utile <- S !!!!
     private static String pieceSignature = " ";
 
     private static int cases = 0;
