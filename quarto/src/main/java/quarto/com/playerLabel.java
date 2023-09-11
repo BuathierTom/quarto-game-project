@@ -38,13 +38,13 @@ public class PlayerLabel {
         String tour = "";
     
         if (tourJoueur == 0){
-            tour = "Joueur 1: Choissiez une pièce";
+            tour = "Joueur 1: Choisir une pièce";
         } 
         else if (tourJoueur == 1) {
             tour = "IA: Placer la pièce      ";
         }
         else if (tourJoueur == 2){
-            tour = "IA: Choissiez une pièce";
+            tour = "IA: Choisir une pièce";
         }
         else if (tourJoueur == 3){
             tour = "Joueur 1: Placer la pièce      ";
