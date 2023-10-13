@@ -32,7 +32,7 @@
 
 Nous avons fini le 1er semestre avec un jeu fonctionnel mais sans vérification, nous avons fais le maximum meme si on a rencontrer plusieurs problèmes comme par exemple plusieurs collaborateurs qui sont partis durant le 1er semestre et qui n'ont rien fais.
 
-Pour le 2ème semestre, nous devrons mettre en place des IAs et mettre en réseau le jeu. Nous devons ausi finir les vérifications avant de commencer le développement des IAs. 
+Pour le 2ème semestre, nous avons mis en place une IA qui pose les pièces aléatoirement. Nous avons aussi fini les dernières modification des verifications des règles du jeu mais avec un manque de temps nous n'avons pas eu le temps de continuer les IAs et les finir. 
 
 ## Collaborateurs
 
